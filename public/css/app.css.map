@@ -1,0 +1,1 @@
+{"version":3,"sources":["custom/custom.scss"],"names":[],"mappings":"AAAA;EACC,sBAAsB,EACtB;;AAED;EACC,cAAa,EACb;;AAED;EACC,YAAW,EACX","file":"app.css","sourcesContent":[".noBullets{\n\tlist-style-type: none;\n}\n\n.sideBar{\n\tborder:solid;\n}\n\np{\n\tcolor:grey;\n}"],"sourceRoot":"/source/"}
