@@ -41,22 +41,24 @@ class AccountManagementController extends Controller
 
     public function updatePassword(UserSecurityFormRequest $request)
     {
-
-   		$user = Auth::user();
+        //Grab current authentication user then get their current password. 
+        //Check if whether the current password is equal to what the input of "current_password" and 
+        //if it is then chaneg the password as long as the "UserSecurityFormRequest" Request rules are met
+        $user = Auth::user();
         $hashed_password = Auth::user()->password;
         $current_password = $request->input('current_password');
         $new_password = $request->input('password');
-   		if (Hash::check($current_password, $hashed_password)) {
+            if (Hash::check($current_password, $hashed_password)) {
         	$user->fill([
-                    'password' => bcrypt($request->password)
+                    'password' => bcrypt($new_password)
                 ])->save();
-            flash()->success('You have successfully updated your password');
-            return back();
-    	}
-    	else{
-            flash()->error('Error: Please ensure you are entering your current password correctly!');
-            return back();
-    	}
+                flash()->overlay('You have successfully updated your password');
+                return back();
+            }
+            else{
+                flash()->error('Error: Please ensure you are entering your current password correctly!');
+                return back();
+            }
    	}
     	
 }
