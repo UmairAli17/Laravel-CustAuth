@@ -20,7 +20,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 
-Route::group(['middleware' => 'roles:admin|author'], function() 
+Route::group(['middleware' => 'roles:admin|student|owner'], function() 
 {
 	Route::resource('posts', 'PostsController');
     

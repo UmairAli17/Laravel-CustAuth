@@ -2,6 +2,8 @@
   list-style-type: none; }
 
 .sideBar {
+  height: 100%;
+  width: 250px;
   border: solid; }
 
 p {
