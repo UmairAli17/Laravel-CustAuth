@@ -28,13 +28,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    //If register dont work or passwords arent being recognised then remove the following:
-
-    /* public function setPasswordAttribute($password) 
-    { 
-        return $this->attributes['password'] = bcrypt($password); 
-    }*/
-
     //turns dates to carbon
     protected $dates = ['created_at'];
     

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
 
-	protected $fillable = ['title', 'body', 'user_id', 'approval'];
+	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at'];
 	/* A Post is owned by User*/
 
     public function user()
@@ -15,15 +15,17 @@ class Posts extends Model
     	return $this->belongsTo(User::class);
     }
 
-    public function scopeApproved($query)
+    
+    /*** 
+        Allows for dynamic scoping like so:
+        $post = Posts::status('1')->orderBy('created_at')->get();
+    **/
+    
+    public function scopeStatus($query, $status)
     {
-    	$query->where('approval', '=', 1);
+    	$query->where('approval', '=', $status);
     }
     
-    public function scopeRefused($query)
-    {
-    	$query->where('approval', '=', 3);
-    }
     
     public function approvalNote($status)
     {

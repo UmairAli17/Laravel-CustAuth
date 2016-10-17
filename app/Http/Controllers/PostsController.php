@@ -60,10 +60,13 @@ class PostsController extends Controller
     public function update(UpdatePostRequest $request, $id)
     {
         $post = Posts::findOrFail($id);
+        $user = Auth::user()->name;
         if (Gate::allows('owns_post', $post)) {
+            //tells the query to add the user user's name ot the table
+            $post['edited_by'] = $user;
             $post->update($request->all());
             flash()->success('Your Post has been Updated!');
-            return redirect()->action('PostsController@show', [$posts]);
+            return redirect()->action('PostsController@show', [$post]);
         }
         else{
             flash()->warning('You do not have access to editing that resource');
@@ -75,6 +78,7 @@ class PostsController extends Controller
     public function myPosts()
     {
         $myPosts = Auth::user();
+        //the above gets the current user's information and then tells the below's query to get all the current user's posts
         $posts = $myPosts->posts()->get();
         return view('posts.user.myPosts', compact('posts'));
     }
@@ -82,7 +86,7 @@ class PostsController extends Controller
     public function approvedPosts()
     {
         $approvedPosts = Auth::user();
-        $posts = $approvedPosts->posts()->approved()->orderBy('created_at')->get();
+        $posts = $approvedPosts->posts()->status('1')->orderBy('created_at')->get();
         return view('posts.user.myApprovedPosts', compact('posts'));
     }
 }

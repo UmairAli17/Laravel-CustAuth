@@ -9,7 +9,7 @@
 		
         <hr>
 		
-        <li><a href="#">My Posts</a></li>
+        <li><a href="{{ url('user/my_posts')}}">My Posts</a></li>
 		<li><a href="#">Approved Posts</a></li>
 		<li><a href="#">Rejected Posts</a></li>
 	</ul>

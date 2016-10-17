@@ -34,7 +34,7 @@ class AuthServiceProvider extends ServiceProvider
                 name column of the permissions table has that permission by cross-checking it to the role model's hasRol function
                 it is done so so that it gets all the roles that have this permission
 
-                ->roles is the function fromt the roles model
+                ->roles is the function from the roles model
         */
          foreach ($this->getPermissions() as $permission) {
              $gate->define($permission->name, function($user) use ($permission){
@@ -43,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
          }
          
     }
-    
+
     protected function getPermissions()
     {
         return Permissions::with('roles')->get();
