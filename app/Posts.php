@@ -10,11 +10,24 @@ class Posts extends Model
 	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at'];
 	/* A Post is owned by User*/
 
+    //this model belongs to a user
     public function user()
     {
     	return $this->belongsTo(User::class);
     }
 
+    //This model belongs to a business
+    public function businessReview()
+    {
+        return $this->belongsTo(Businesses::class);
+    }
+
+
+    //this model allows for many comments
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
     
     /*** 
         Allows for dynamic scoping like so:

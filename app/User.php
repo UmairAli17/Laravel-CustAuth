@@ -85,5 +85,10 @@ class User extends Authenticatable
        return in_array(1, $this->roles()->pluck('roles_id')->all());
     }
     
+    //Check if user is a Landlord.
+    public function isLandLord() 
+    {
+       return in_array(3, $this->roles()->pluck('roles_id')->all());
+    }
     
 }
