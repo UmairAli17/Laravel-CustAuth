@@ -14,6 +14,7 @@ class AddForeignBusinesstoPosts extends Migration
     {
         Schema::table('posts', function($table)
         {
+            $table->integer('business_id')->unsigned();
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
         });
     }

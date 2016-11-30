@@ -41,6 +41,19 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+
+
+    public function authenticated($request, $user)
+    {
+        if($user->hasRole('landlord')) {
+            return redirect('/landlord/create');
+        }
+        else if($user->hasRole('admin')) {
+            return redirect('/admin/');
+        }
+        return redirect()->intended($this->redirectPath());
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -73,8 +86,8 @@ class AuthController extends Controller
         //Attach the Chosen Role
         $user = User::find($create->id);
         //below will allow for attaching roles according to the dropdown choice
-        //$user->roles()->attach($data['role']);
-        $user->roles()->attach(2);
+        $user->roles()->attach($data['role']);
+        //$user->roles()->attach(2);
         //To Note:         $user->roles()->assignRole($data['role']); can be done   however the dropdown has only integers as values and the "assignRole" function only allows one to assign
         //a role by name
         return $create;

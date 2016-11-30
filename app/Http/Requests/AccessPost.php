@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use Auth;
 use App\Posts;
 use App\User;

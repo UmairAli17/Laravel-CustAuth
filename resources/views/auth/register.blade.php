@@ -67,15 +67,15 @@
                                 </div>
                             </div>
 
-                            <!--<div class="form-group{{ $errors->has('acctype') ? ' has-error' : '' }}">
+                            <div class="form-group{{ $errors->has('acctype') ? ' has-error' : '' }}">
                                 <label class="col-md-4 control-label">Account Type</label>
                                 <div class="col-md-6">
                                     <select name="role" id="role" class="form-control">
-                                        <option value="2">Author</option>
-                                        <option value="3">Member</option>
+                                        <option value="2">Student</option>
+                                        <option value="3">Landlord</option>
                                     </select>
                                 </div>
-                            </div>-->
+                            </div>
                             
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
