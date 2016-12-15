@@ -41,12 +41,24 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+/**
+     * Overrides the default post register to redirect the user to the appropriate location
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     
+    public function postRegister(Request $request)
+    {
+         if($user->hasRole('landlord')) {
+            $this->postRegister($request);
+            return redirect('/landlord/create');
+        }
+    }*/
 
 
     public function authenticated($request, $user)
     {
         if($user->hasRole('landlord')) {
-            return redirect('/landlord/create');
+            return redirect('/landlord/business');
         }
         else if($user->hasRole('admin')) {
             return redirect('/admin/');

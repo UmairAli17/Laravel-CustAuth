@@ -19,7 +19,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get("/landlord/create", "LandlordController@create_business", ['middleware' => 'roles:landlord']);
+Route::get("/landlord/business", "LandlordController@business", ['middleware' => 'roles:landlord']);
+Route::POST("/landlord/store", "LandlordController@store", ['middleware' => 'roles:landlord']);
 
 Route::group(['middleware' => 'roles:admin|student|landlord'], function() 
 {
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
 Route::group(['middleware' => 'roles:admin'], function() {
   Route::resource('admin', 'AdminController');
 
-   Route::get('/admin/', 'AdminController@index');
+  Route::get('/admin/', 'AdminController@index');
   Route::get('/admin/moderate_posts', 'AdminController@postMod');
   Route::PATCH('mp/ap/{posts}', 'AdminController@postStatus');
 });
