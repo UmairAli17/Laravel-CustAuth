@@ -36,6 +36,12 @@ class AuthServiceProvider extends ServiceProvider
 
                 ->roles is the function from the roles model
         */
+        
+        /* foreach ($this->getPermissions() as $permission) {
+             $gate->define($permission->name, function($user) use ($permission){
+                 return $user->hasRole($permission->roles);
+             });
+         }*/
 
     }
 
