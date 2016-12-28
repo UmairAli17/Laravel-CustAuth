@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
 
-	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at'];
+	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'business_id'];
 	/* A Post is owned by User*/
 
     //this model belongs to a user

@@ -38,6 +38,7 @@ class PostsController extends Controller
         $post['user_id'] = Auth::user()->id;
         //2 is the approval status of where the post is waiting for approval
         $post['approval'] = 2;
+        $post['business_id'] = 20;
         $posts = Posts::create($post);
         return redirect()->action('PostsController@show', [$posts]);
         flash()->success('Your Post has been Submitted.');

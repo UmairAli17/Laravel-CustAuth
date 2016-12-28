@@ -95,9 +95,9 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        //Attach the Chosen Role
+        //Find the newlyt created user
         $user = User::find($create->id);
-        //below will allow for attaching roles according to the dropdown choice
+        //then attach the role id to that user
         $user->roles()->attach($data['role']);
         //$user->roles()->attach(2);
         //To Note:         $user->roles()->assignRole($data['role']); can be done   however the dropdown has only integers as values and the "assignRole" function only allows one to assign

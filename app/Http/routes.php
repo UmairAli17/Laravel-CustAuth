@@ -19,10 +19,21 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get("/landlord/business", "LandlordController@business", ['middleware' => 'roles:landlord']);
-Route::POST("/landlord/store", "LandlordController@store", ['middleware' => 'roles:landlord']);
 
-Route::group(['middleware' => 'roles:admin|student|landlord'], function() 
+/**** LANDLORD SPECIFIC ROUTES***/
+Route::group(['middleware' => 'has_business', 'roles:landlord'], function() {
+  Route::get("/landlord/business", "LandlordController@business");
+});
+
+
+/**** LANDLORD SPECIFIC ROUTES***/
+Route::group(['middleware' => 'has_business', 'roles:landlord'], function() {
+
+  Route::POST("/landlord/store", "LandlordController@store");
+});
+
+
+Route::group(['middleware' => 'roles:admin|user|landlord'], function() 
 {
 	Route::resource('posts', 'PostsController');
     

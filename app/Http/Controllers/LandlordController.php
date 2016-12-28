@@ -9,6 +9,7 @@ use App\Businesses;
 use Auth;
 
 
+
 class LandlordController extends Controller
 {
     public function __construct()
@@ -27,8 +28,9 @@ class LandlordController extends Controller
     {
     	$business = $request->all();
     	$business['user_id'] = Auth::user()->id;
-    	$business = Businesses::create($business);
-    	flash()->success('Your Business has been Created.');
+        $business = Businesses::create($business);
+        flash()->success('Your Business has been Created.');
+        return back();
     }
 
 }

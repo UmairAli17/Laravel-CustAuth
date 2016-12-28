@@ -41,7 +41,7 @@
     </nav>
     <div class="row">
         <!--<div class="col-md-8 col-md-offset-2">-->
-                @include('flash::message')
+            <div class="row"><div class="col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">@include('flash::message')</div></div>
             <div class="row">
                 @yield('content')
             </div>

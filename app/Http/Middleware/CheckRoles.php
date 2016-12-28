@@ -24,7 +24,9 @@ class CheckRoles
     }
         /*flash()->error('Error 404!: Please ensure that you have sufficient access');
         return back();*/
-        flash()->overlay('Error 404!: Insufficient Access!', 'Error 404:');
+        flash()->error('Error 404!: Insufficient Access!', 'Error 404:');
         return back();
+
+        return $next($request);
     }
 }
