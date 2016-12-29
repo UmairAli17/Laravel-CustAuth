@@ -23,7 +23,7 @@ class AdminController extends Controller
     	return view('admin.adminDash', compact('post', 'user'));
     }
 
-    public function postMod()
+    public function showPostMod()
     {
         $post = Posts::latest()->get();
         return view('admin.adminPostMod', compact('post'));

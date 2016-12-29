@@ -17,7 +17,12 @@ class LandlordController extends Controller
 
     }
 
-    //create business or view business edit form
+    public function show_all(){
+        $businesses = Businesses::all();
+        return view('posts.all', compact('businesses'));
+    }
+
+    //create business form
     public function business()
     {	
     	$business = new Businesses;

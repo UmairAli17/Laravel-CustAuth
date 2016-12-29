@@ -55,9 +55,7 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
 });
 
 Route::group(['middleware' => 'roles:admin'], function() {
-  Route::resource('admin', 'AdminController');
-
   Route::get('/admin/', 'AdminController@index');
-  Route::get('/admin/moderate_posts', 'AdminController@postMod');
+  Route::get('/admin/moderate-posts', 'AdminController@showPostMod');
   Route::PATCH('mp/ap/{posts}', 'AdminController@postStatus');
 });

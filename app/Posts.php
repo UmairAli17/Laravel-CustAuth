@@ -33,7 +33,8 @@ class Posts extends Model
         Allows for dynamic scoping like so:
         $post = Posts::status('1')->orderBy('created_at')->get();
     **/
-    
+
+
     public function scopeStatus($query, $status)
     {
     	$query->where('approval', '=', $status);
