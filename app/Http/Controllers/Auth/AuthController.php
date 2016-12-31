@@ -81,7 +81,7 @@ class AuthController extends Controller
         Auth::guard($this->getGuard())->login($this->create($request->all()));
 
         //Fire the event whether the user is a landlord and create a business onject (for lack of a better word) for them.
-        event(new \App\Events\LandlordRegistered(Auth::user()->id));
+        event(new \App\Events\LandlordRegistered(Auth::user()));
         return redirect($this->redirectPath());
     }
 

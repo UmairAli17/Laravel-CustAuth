@@ -71,8 +71,8 @@
                                 <label class="col-md-4 control-label">Account Type</label>
                                 <div class="col-md-6">
                                     <select name="role" id="role" class="form-control">
-                                        <option value="2">Student</option>
-                                        <option value="3">Landlord</option>
+                                        <option value="3">Student</option>
+                                        <option value="2">Landlord</option>
                                     </select>
                                 </div>
                             </div>

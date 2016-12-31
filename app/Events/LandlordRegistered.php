@@ -20,6 +20,8 @@ class LandlordRegistered extends Event
      */
     public function __construct(User $userID)
     {
+        //get whatever is passed in the event parameter should match the value in the column below
+        //$this->columnName = $variable
         $this->id = $userID;
     }
 

@@ -14,7 +14,6 @@ use App\Businesses;
 class AssignBusinesstoLandlord
 {
 
-    $protected $request;
     /**
      * Create the event listener.
      *
@@ -33,11 +32,10 @@ class AssignBusinesstoLandlord
      */
     public function handle(LandlordRegistered $event)
     {
-       $user = User::find($event->userId);
-       if($user->hasRole('landlords'))
+       $user = Auth::user($event->userID);
+       if($user->hasRole('landlord'))
        {
-        $business['user_id'] = $user;
-        $business = Businesses::create($business);
+            $user->business()->save(new Businesses);
        }
-    )
+    }
 }
