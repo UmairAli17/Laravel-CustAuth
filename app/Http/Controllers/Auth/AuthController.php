@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Roles;
 use Validator;
+use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -64,6 +66,23 @@ class AuthController extends Controller
             return redirect('/admin/');
         }
         return redirect()->intended($this->redirectPath());
+    }
+
+    public function register(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        //Fire the event whether the user is a landlord and create a business onject (for lack of a better word) for them.
+        event(new \App\Events\LandlordRegistered(Auth::user()->id));
+        return redirect($this->redirectPath());
     }
 
     /**
