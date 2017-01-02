@@ -48,13 +48,18 @@ class User extends Authenticatable
     {
         return $this->hasOne(Businesses::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
     
     
 
     //Checks for a specific role
     public function hasRole($role)
     {
-        //if the result is out putted as a string then each result(s) (which will be from the name column) be equal to the $role parameter. I.e. 
+        //if i pass a string into hasRole anywhere in the app, then get it as a single result
         //it will check whether "admin" is part of the string result
         if(is_string($role))
         {
@@ -62,10 +67,20 @@ class User extends Authenticatable
         }
         //This will check whether the role is part of an array;
 
-        //This is done so that the function actively looks for a result that matches whatever has been passed through the parameter.
-        //One example is that if paramater asks for "admins" but the user has roles of "admin", "author" and "student"; it'll only get the "admin" from there. It essentially 
-        //chooses what to get from the result.
+        //the following will check for a specific value that's equal to the parameter that I've passed into hasRole should I end up returning a collection.
+        //format is: return !! $parameter->intersect($this->relationship)->count
+        //                                                                 count makes sure it goes through the whole collection
         return !! $role->intersect($this->roles)->count();
+
+        //I could have also done this:
+        //It says run the function and get each role that equals to my parameter and return true or if it there's nothing, return false
+        /*foreach ($role as $r) {
+            if($this->hasRole($r->name))
+                {
+                    return true;
+                }
+            return false;
+        }*/
     }
 
     //gives the user the role

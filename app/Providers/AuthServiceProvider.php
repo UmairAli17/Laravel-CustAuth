@@ -47,6 +47,13 @@ class AuthServiceProvider extends ServiceProvider
 
     protected function getPermissions()
     {
-        return Permissions::with('roles')->get();
+        try {
+            # eagerload all the permissions along with roles
+            return Permissions::with('roles')->get();
+
+        } #if none are found then return empty so i can run the migration
+        catch (\Exception $e) {
+            return [];
+        }
     }
 }

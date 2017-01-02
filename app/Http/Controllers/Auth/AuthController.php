@@ -59,10 +59,10 @@ class AuthController extends Controller
 
     public function authenticated($request, $user)
     {
-        if($user->hasRole('landlord')) {
+        /*if($user->hasRole('landlord')) {
             return redirect('/landlord/business');
         }
-        else if($user->hasRole('admin')) {
+        else*/ if($user->hasRole('admin')) {
             return redirect('/admin/');
         }
         return redirect()->intended($this->redirectPath());

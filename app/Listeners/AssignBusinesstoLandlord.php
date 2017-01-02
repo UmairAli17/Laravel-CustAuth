@@ -32,7 +32,9 @@ class AssignBusinesstoLandlord
      */
     public function handle(LandlordRegistered $event)
     {
+        //wrap auth'd user to a variable and bind it to the $event->userID parameter
        $user = Auth::user($event->userID);
+       //check if the user that has been binded to that even has a role
        if($user->hasRole('landlord'))
        {
             $user->business()->save(new Businesses);
