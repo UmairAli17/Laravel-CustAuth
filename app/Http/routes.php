@@ -21,14 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 
 /**** LANDLORD SPECIFIC ROUTES***/
-Route::group(['middleware' => 'has_business', 'roles:landlord'], function() {
+Route::group(['middleware' => 'roles:landlord'], function() {
   Route::get("/landlord/business", "LandlordController@business");
-});
-
-
-/**** LANDLORD SPECIFIC ROUTES***/
-Route::group(['middleware' => 'has_business', 'roles:landlord'], function() {
-
   Route::POST("/landlord/store", "LandlordController@store");
 });
 
