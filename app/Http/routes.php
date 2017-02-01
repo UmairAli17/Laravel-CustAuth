@@ -22,8 +22,14 @@ Route::get('/home', 'HomeController@index');
 
 /**** LANDLORD SPECIFIC ROUTES***/
 Route::group(['middleware' => 'roles:landlord'], function() {
-  Route::get("/landlord/business", "LandlordController@business");
-  Route::POST("/landlord/store", "LandlordController@store");
+
+
+  //add a residence to landlord - show form
+  Route::get("/landlord/add_residence", "LandlordController@add_residence");
+
+  //add a residence to landlord - post form
+  Route::POST("/landlord/store_residence", "LandlordController@store_residence");
+  
 });
 
 
@@ -31,12 +37,12 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
 {
 	Route::resource('posts', 'PostsController');
     
-    //Shows all of current user's posts
+  //Shows all of current user's posts
 	Route::get('/user/my_posts', 'PostsController@myPosts');
-    //Shows all of current user's APPROVED Posts
-    Route::get('/user/my_approved_posts', 'PostsController@approvedPosts');
-    //Shows all of current user's Refused Posts
-    Route::get('/user/my_refused_posts', 'PostsController@approvedPosts');
+  //Shows all of current user's APPROVED Posts
+  Route::get('/user/my_approved_posts', 'PostsController@approvedPosts');
+  //Shows all of current user's Refused Posts
+  Route::get('/user/my_refused_posts', 'PostsController@approvedPosts');
 	//For the current user's account management
 	Route::get('user/account', 'AccountManagementController@index');
 	Route::get('user/security', 'AccountManagementController@security');

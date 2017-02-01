@@ -26,6 +26,7 @@ class AccountManagementController extends Controller
 
     public function security()
     {
+        // get current user details and allow them to be accessed by the view (which will be the two forms)
     	$user = Auth::user();
     	return view('auth.account.security', compact('user'));
     }
@@ -45,9 +46,13 @@ class AccountManagementController extends Controller
         //Check if whether the current password is equal to what the input of "current_password" and 
         //if it is then chaneg the password as long as the "UserSecurityFormRequest" Request rules are met
         $user = Auth::user();
+        // get the user's current password
         $hashed_password = Auth::user()->password;
+        // get the password fromt he current_password input textbox
         $current_password = $request->input('current_password');
+        //get the new password from the password input textbox
         $new_password = $request->input('password');
+            // if what the user entered into the text input matches the current user's password from the db then allow the following 
             if (Hash::check($current_password, $hashed_password)) {
         	$user->fill([
                     'password' => bcrypt($new_password)
@@ -55,6 +60,7 @@ class AccountManagementController extends Controller
                 flash()->overlay('You have successfully updated your password');
                 return back();
             }
+            // otherwise, tell them that they made a
             else{
                 flash()->error('Error: Please ensure you are entering your current password correctly!');
                 return back();
