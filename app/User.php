@@ -44,7 +44,7 @@ class User extends Authenticatable
     }
     
     //USER has only one business
-    public function business()
+    public function businesses()
     {
         return $this->hasOne(Businesses::class);
     }

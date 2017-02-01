@@ -34,8 +34,8 @@ class LandlordController extends Controller
     {
     	
         $user = Auth::user();
-        //get the landlord's business
-        $land_business = $user->business()->first();
+        //get the landlord's business - only one record is required which is why "first" is used as it returns a single row rather than a collection like what "get" would do
+        $land_business = $user->businesses()->first();
         // get the business id
         $business_id = $land_business->id;
         $resi = $request->all();      

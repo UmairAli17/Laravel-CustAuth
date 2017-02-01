@@ -22,7 +22,7 @@ class Businesses extends Model
 
 
     //a business can have many reviews
-    public function reviews()
+    public function review()
     {
     	return $this->hasMany(Posts::class);
     }
