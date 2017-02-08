@@ -3,6 +3,7 @@
 namespace App\Providers;
 use App\Permissions;
 use App\Posts;
+use App\Residences;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

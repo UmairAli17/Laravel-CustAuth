@@ -10,6 +10,7 @@
                 </div>
                 <h3>{{ $posts->title }}</h3>
                 <p>{{ str_limit($posts->body, 150, '..') }}</p>
+                @can('owns_post', $posts) <a href="{{ route('posts.edit', $posts->id) }}">Update Posts</a>@endcan</div>
             </div>
             @endforeach
         </div>

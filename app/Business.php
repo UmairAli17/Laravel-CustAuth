@@ -34,4 +34,9 @@ class Business extends Model
     {
         return $this->hasMany(Residences::class);
     }
+
+    public function owns($related)
+    {
+        return $this->id === $related->business_id;
+    }
 }
