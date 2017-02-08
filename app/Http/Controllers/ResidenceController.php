@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Residences;
-use App\Business;
-
 
 class ResidenceController extends Controller
 {	

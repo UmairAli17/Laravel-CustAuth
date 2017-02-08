@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-use App\Businesses;
+use App\Business;
 
 class AssignBusinesstoLandlord
 {
@@ -37,7 +37,7 @@ class AssignBusinesstoLandlord
        //check if the user that has been binded to that even has a role
        if($user->hasRole('landlord'))
        {
-            $user->business()->save(new Businesses);
+            $user->business()->save(new Business);
        }
     }
 }

@@ -124,7 +124,7 @@ class User extends Authenticatable
     }
 
     public function landlordOwner($related){
-        return $this->business()->residence()->where('id', $related)->get();
+        return $this->business()->residence()->where('id', $related);
     }
 
 }
