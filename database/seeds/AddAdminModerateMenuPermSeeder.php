@@ -20,5 +20,10 @@ class AddAdminModerateMenuPermSeeder extends Seeder
         	'name' => 'moderate-posts',
         	'label' => 'Moderate Posts',
         ]);
+
+        DB::table('permissions')->insert([
+            'name' => 'add-landlord-residence',
+            'label' => 'Moderate Posts',
+        ]);
     }
 }

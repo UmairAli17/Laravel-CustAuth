@@ -13,7 +13,9 @@ class Residence extends Model
 
 
 	//connect the residence to a business
-    public function businesses(){
-    	return $this->belongsTo(Businesses::class);
+    public function business(){
+    	return $this->belongsTo(Business::class);
     }
+
+    
 }

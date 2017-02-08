@@ -37,7 +37,7 @@ class AssignBusinesstoLandlord
        //check if the user that has been binded to that even has a role
        if($user->hasRole('landlord'))
        {
-            $user->businesses()->save(new Businesses);
+            $user->business()->save(new Businesses);
        }
     }
 }

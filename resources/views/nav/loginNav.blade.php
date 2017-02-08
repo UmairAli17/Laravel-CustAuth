@@ -1,5 +1,6 @@
 <ul class="nav navbar-nav">
-    <li><a href="{{ url('/home') }}">All Posts</a></li>
+    <li><a href="{{ route('home') }}">All Posts</a></li>
+    <li><a href="{{ route('residences.all') }}"> All Residences </a></li>
 </ul>
 <ul class="nav navbar-nav">
     <li class="dropdown">

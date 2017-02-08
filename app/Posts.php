@@ -19,7 +19,7 @@ class Posts extends Model
     //This model belongs to a business
     public function businessReview()
     {
-        return $this->belongsTo(Businesses::class);
+        return $this->belongsTo(Business::class);
     }
 
 
@@ -38,25 +38,6 @@ class Posts extends Model
     public function scopeStatus($query, $status)
     {
     	$query->where('approval', '=', $status);
-    }
-    
-    
-    public function approvalNote($status)
-    {
-        $post = Posts::where('approval', '=', $status);
-        if($post = 2)
-        {
-            return "Awaiting Approval";
-        }
-        elseif($post = 3)
-        {  
-            return "Post not Approved. Changed may need to be made";
-        }
-        elseif($post = 1)
-        {
-            return "Approved";
-        }
-
     }
 
     

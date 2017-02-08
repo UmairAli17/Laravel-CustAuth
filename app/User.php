@@ -44,9 +44,9 @@ class User extends Authenticatable
     }
     
     //USER has only one business
-    public function businesses()
+    public function business()
     {
-        return $this->hasOne(Businesses::class);
+        return $this->hasOne(Business::class);
     }
 
     public function comments()
@@ -91,11 +91,11 @@ class User extends Authenticatable
         );
     }
 
-    //Checks whether the user has a role with that permission
+    /*//Checks whether the user has a role with that permission
     public function hasPermission($permission)
     {
         return $this->hasRole($permission->roles);
-    }
+    }*/
 
 
     // get the current model id, then match whatever is passed into the $related ($user) and match it to 
@@ -118,9 +118,13 @@ class User extends Authenticatable
     }
     
     //Check if user is a Landlord.
-    public function isLandLord() 
+    public function isLandlord() 
     {
-       return in_array(3, $this->roles()->pluck('roles_id')->all());
+       return in_array(2, $this->roles()->pluck('roles_id')->all());
     }
-    
+
+    public function landlordOwner($related){
+        return $this->business()->residence()->where('id', $related)->get();
+    }
+
 }

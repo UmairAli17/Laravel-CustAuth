@@ -17,24 +17,43 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 /**** LANDLORD SPECIFIC ROUTES***/
 Route::group(['middleware' => 'roles:landlord'], function() {
 
+  //Landlord Dashboard
+  Route::get("/landlord", "LandlordController@landlord_dash")->name('landlord.dash');
 
   //add a residence to landlord - show form
-  Route::get("/landlord/add_residence", "LandlordController@add_residence");
+  Route::get("/landlord/my-residences", "LandlordController@my_residences")->name('landlord.my_residences');
+
+  //add a residence to landlord - show form
+  Route::get("/landlord/add-residence", "LandlordController@add_residence")->name('landlord.add');
 
   //add a residence to landlord - post form
-  Route::POST("/landlord/store_residence", "LandlordController@store_residence");
+  Route::POST("/landlord/store-residence", "LandlordController@store_residence")->name('landlord.store');
   
 });
 
 
+
 Route::group(['middleware' => 'roles:admin|user|landlord'], function() 
 {
+
+  // Residence Routes
+
+  //show all residences
+  Route::get('residence', 'ResidenceController@all')->name('residences.all');
+
+  //residence/1
+  Route::get('residence/{id}', 'ResidenceController@view')->name('residence.view');
+
+
+
+
+
 	Route::resource('posts', 'PostsController');
     
   //Shows all of current user's posts

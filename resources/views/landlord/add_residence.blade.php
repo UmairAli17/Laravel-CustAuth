@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="col-md-8 col-md-offset-2"> 
-		{!! Form::open(['action' => 'LandlordController@store_residence']) !!}
+		{!! Form::open(['route' => 'landlord.store']) !!}
 			<div class="form-group">
 				{!! Form::label('name', 'Residence Name:') !!}
 				{!! Form::text('name', null, ['class'=>'form-control']) !!}

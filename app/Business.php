@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Businesses extends Model
+class Business extends Model
 {
      /**
      * The attributes that are mass assignable.
@@ -13,7 +13,9 @@ class Businesses extends Model
      */
     protected $fillable = [ 'id', 'user_id', 'name', 'description', 'logoFileName', 'logoFilePath' ];
 
-    
+    protected $table = 'businesses';
+
+
     //a business can have an owner
     public function user()
     {
@@ -30,6 +32,6 @@ class Businesses extends Model
     //this landlord business has many residences
     public function residence()
     {
-        return $this->hasMany(Residence::class);
+        return $this->hasMany(Residences::class);
     }
 }

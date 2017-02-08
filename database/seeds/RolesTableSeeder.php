@@ -18,13 +18,13 @@ class RolesTableSeeder extends Seeder
 
 
         DB::table('roles')->insert([
-        	'name' => 'author',
-        	'label' => 'Author Role',
+        	'name' => 'landlord',
+        	'label' => 'Landlord Role',
         ]);
 
         DB::table('roles')->insert([
-        	'name' => 'user',
-        	'label' => 'General User.',
+        	'name' => 'student',
+        	'label' => 'Student - General User.',
         ]);
     }
 }

@@ -1,3 +1,14 @@
+.navbar {
+  margin-bottom: 0; }
+
+.cards {
+  border: solid 1px #eee;
+  text-align: center;
+  height: 25em; }
+
+.card-items {
+  font-size: 2em; }
+
 .noBullets {
   list-style-type: none; }
 

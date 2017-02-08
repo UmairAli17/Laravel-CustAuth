@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignBusinesstoPosts extends Migration
+class AddResidenceToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddForeignBusinesstoPosts extends Migration
     {
         Schema::table('posts', function($table)
         {
-            $table->integer('business_id')->unsigned();
-            $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
+            $table->integer('residence_id')->unsigned();
+            $table->foreign('residence_id')->references('id')->on('residences')->onDelete('cascade');
         });
     }
 
@@ -29,7 +29,7 @@ class AddForeignBusinesstoPosts extends Migration
     {
         Schema::table('posts', function($table)
         {
-            $table->dropColumn('business_id');
+            $table->dropColumn('residence_id');
         });
     }
 }
