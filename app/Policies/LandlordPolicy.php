@@ -24,9 +24,7 @@ class LandlordPolicy
     public function edit_residence(User $user, Residences $residence)
     {
         //if current user that is a landlord 
-
-        // tried this:         if($user->isLandlord() && $user->business->owns($residence))
-        if($user->isLandlord() && $user->landlordOwner($residence))
+        if($user->landlordResOwner($residence))
         {
             return true;
         }

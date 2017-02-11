@@ -2,7 +2,6 @@
 
 namespace App;
 use Carbon\Carbon;
-
     
 use Illuminate\Foundation\Auth\User as Authenticatable;
 //use App\Http\Controllers\traits\HasRoles;
@@ -123,8 +122,10 @@ class User extends Authenticatable
        return in_array(2, $this->roles()->pluck('roles_id')->all());
     }
 
-    public function landlordOwner($related){
-        return $this->business()->residence()->where('id', $related);
+    public function landlordResOwner($related){
+        //this works
+        return $this->business->residence()->where('id', $related->id)->first();
+        //return $this->load('business.residence')->where('id', $related->id)->get();
     }
 
 }

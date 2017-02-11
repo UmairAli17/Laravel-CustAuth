@@ -15,6 +15,8 @@ class Business extends Model
 
     protected $table = 'businesses';
 
+    protected $with = array('residence');
+
 
     //a business can have an owner
     public function user()
@@ -35,8 +37,4 @@ class Business extends Model
         return $this->hasMany(Residences::class);
     }
 
-    public function owns($related)
-    {
-        return $this->id === $related->business_id;
-    }
 }

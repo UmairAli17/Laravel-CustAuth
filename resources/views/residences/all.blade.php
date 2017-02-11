@@ -6,7 +6,8 @@
 		<a href="{{route('residence.view', ['id'=>$r->id])}}"><h2>{{$r->name}}</h2></a><br>
 		{{$r->street}}<br>
 		{{$r->postcode}}<br>
-		@can('edit_residence', $r->id )<h3>Edit</h3>@endcan
+		@can('edit_residence', $r)<h3>Edit</h3>@endcan
+		{{$r->business_id}}
 	@endforeach
 	</div>
 @endsection

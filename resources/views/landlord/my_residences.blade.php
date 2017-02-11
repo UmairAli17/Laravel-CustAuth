@@ -8,6 +8,7 @@
 					<p>{{ $residence->street }}</p>
 					<p>{{ $residence->city }}</p>
 					<p>{{ $residence->postcode }}</p>
+					@can('edit_residence', $residence)<h3>Edit</h3>@endcan
 				</div>
 			@endforeach
 	</div>
