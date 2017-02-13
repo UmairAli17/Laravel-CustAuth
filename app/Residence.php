@@ -17,5 +17,13 @@ class Residence extends Model
     	return $this->belongsTo(Business::class);
     }
 
+    public function scopeSearch($query, $searchTerm)
+    {
+        $query->where('name', 'LIKE', "%{$searchTerm}%")
+        	orWhere('street', 'LIKE', "%{$searchTerm}%")
+        	orWhere('city', 'LIKE', "%{$searchTerm}%");
+        	orWhere('postcode', 'LIKE', "%{$searchTerm}%");
+    }
+
     
 }

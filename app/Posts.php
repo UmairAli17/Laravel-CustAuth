@@ -38,6 +38,7 @@ class Posts extends Model
     public function scopeStatus($query, $status)
     {
     	$query->where('approval', '=', $status);
+        return $query;
     }
 
     

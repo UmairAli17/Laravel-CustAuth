@@ -114,7 +114,7 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        //Find the newlyt created user
+        //Find the newly created user
         $user = User::find($create->id);
         //then attach the role id to that user
         $user->roles()->attach($data['role']);

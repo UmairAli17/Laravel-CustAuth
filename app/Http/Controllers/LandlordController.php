@@ -42,14 +42,13 @@ class LandlordController extends Controller
     public function store_residence(ResiRequest $request)
     {
     	
-        $user = Auth::user();
-        //get the landlord's business - only one record is required which is why "first" is used as it returns a single row rather than a collection like what "get" would do
-        $land_business = $user->business()->first();
-        // get the business id
-        $business_id = $land_business->id;
-        $resi = $request->all();      
-        $resi['business_id'] = $business_id;
-        $resi = Residence::create($resi);
+       /*get current user -> run user Model business function to find business then through the business model's 
+        relation function, save it*/
+
+        /* User_Model:businessFunction->Business_Model->residenceFunction->save(theRequest) */
+        $newR = new Residence($request->all());
+        $residence = Auth::user()->business->residence()->save($newR);
+        //FUTURE REF: DISPLAY CREATED RESIDENCE
         flash()->success('Your Residence has been uploaded and attached to your account.');
         return back();
     }

@@ -40,12 +40,10 @@ class PostsController extends Controller
 
     public function store(PostRequest $request)
     {
-        $post = $request->all();
-        $post['user_id'] = Auth::user()->id;
-        //2 is the approval status of where the post is waiting for approval
+        $post = new Posts($request->all());
         $post['approval'] = 2;
-        $post['business_id'] = 1;
-        $posts = Posts::create($post);
+        $post['residence_id'] = 1;
+        $posts = Auth::user()->posts()->save($post);
         return redirect()->action('PostsController@show', [$posts]);
         flash()->success('Your Post has been Submitted.');
     }
@@ -84,16 +82,15 @@ class PostsController extends Controller
 
     public function myPosts()
     {
-        $myPosts = Auth::user();
-        //the above gets the current user's information and then tells the below's query to get all the current user's posts
-        $posts = $myPosts->posts()->get();
+        //get all the current user's posts
+        $posts = Auth::user()->posts()->get();
         return view('posts.user.myPosts', compact('posts'));
     }
     
     public function approvedPosts()
     {
-        $approvedPosts = Auth::user();
-        $posts = $approvedPosts->posts()->status('1')->orderBy('created_at')->get();
+        //get all the current user's approved posts
+        $posts = Auth::user()->posts()->status('1')->orderBy('created_at')->get();
         return view('posts.user.myApprovedPosts', compact('posts'));
     }
 }
