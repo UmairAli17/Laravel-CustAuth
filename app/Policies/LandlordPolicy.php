@@ -5,7 +5,7 @@ namespace App\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use App\User;
 use App\Business;
-use App\Residences;
+use App\Residence;
 use Auth;
 class LandlordPolicy
 {
@@ -21,7 +21,7 @@ class LandlordPolicy
         //
     }
 
-    public function edit_residence(User $user, Residences $residence)
+    public function edit_residence(User $user, Residence $residence)
     {
         //if current user that is a landlord 
         if($user->landlordResOwner($residence))

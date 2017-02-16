@@ -32,13 +32,13 @@ class PostsController extends Controller
     }
 
     //Show Upload Post Form
-    public function create()
+    /*public function create()
     {
         $post = new Posts;
         return view('posts.create', compact('post'));
-    }
+    }*/
 
-    public function store(PostRequest $request)
+    /*public function store(PostRequest $request)
     {
         $post = new Posts($request->all());
         $post['approval'] = 2;
@@ -46,7 +46,7 @@ class PostsController extends Controller
         $posts = Auth::user()->posts()->save($post);
         return redirect()->action('PostsController@show', [$posts]);
         flash()->success('Your Post has been Submitted.');
-    }
+    }*/
 
     //Show Edit Post Form
     public function edit($id)

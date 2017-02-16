@@ -7,21 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
 
-	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'business_id'];
-	/* A Post is owned by User*/
+	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id'];
 
-    //this model belongs to a user
+	/* A Post is owned by User*/
     public function user()
     {
     	return $this->belongsTo(User::class);
     }
 
-    //This model belongs to a business
-    public function businessReview()
+    //Posts can also belong to a residence
+    public function residence()
     {
-        return $this->belongsTo(Business::class);
+        return $this->belongsTo(Residence::class, 'residence_id');
     }
-
 
     //this model allows for many comments
     public function comments()

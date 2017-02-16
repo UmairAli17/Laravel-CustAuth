@@ -50,9 +50,8 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
   //residence/1
   Route::get('residence/{id}', 'ResidenceController@view')->name('residence.view');
 
-
-
-
+  //
+  Route::POST('review/{residence}', 'ResidenceController@store_residence_review')->name('residence.store_residence_review');
 
 	Route::resource('posts', 'PostsController');
     

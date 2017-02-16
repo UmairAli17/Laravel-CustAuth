@@ -3,7 +3,7 @@
 namespace App\Providers;
 use App\Permissions;
 use App\Posts;
-use App\Residences;
+use App\Residence;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         \App\Posts::class => \App\Policies\PostsPolicy::class,
-        \App\Residences::class => \App\Policies\LandlordPolicy::class,
+        \App\Residence::class => \App\Policies\LandlordPolicy::class,
     ];
 
     /**

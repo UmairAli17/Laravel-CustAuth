@@ -12,5 +12,10 @@ class Residences extends Model
     	return $this->belongsTo(Business::class);
     }
 
+    public function posts()
+    {
+    	return $this->hasMany(Posts::class, 'residence_id');
+    }
+
 
 }
