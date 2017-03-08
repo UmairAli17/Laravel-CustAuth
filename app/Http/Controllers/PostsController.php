@@ -31,23 +31,6 @@ class PostsController extends Controller
     	return view('posts.show', compact('post'));
     }
 
-    //Show Upload Post Form
-    /*public function create()
-    {
-        $post = new Posts;
-        return view('posts.create', compact('post'));
-    }*/
-
-    /*public function store(PostRequest $request)
-    {
-        $post = new Posts($request->all());
-        $post['approval'] = 2;
-        $post['residence_id'] = 1;
-        $posts = Auth::user()->posts()->save($post);
-        return redirect()->action('PostsController@show', [$posts]);
-        flash()->success('Your Post has been Submitted.');
-    }*/
-
     //Show Edit Post Form
     public function edit($id)
     {

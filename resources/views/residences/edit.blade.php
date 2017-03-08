@@ -1,17 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-md-8 col-md-offset-2"> 
-		{!! Form::open(['route' => 'residence.store']) !!}
+<div class="col-md-8 col-md-offset-2">
+	<div class="panel-heading">
+		{!! Form::model($residence, ['method' => 'PATCH', 'route' => ['residence.update', $residence->id]]) !!}
 			<div class="form-group">
-				{!! Form::label('name', 'Residence Name:') !!}
+				{!! Form::label('name', 'Name:') !!}
 				{!! Form::text('name', null, ['class'=>'form-control']) !!}
 			</div>
 
 			<div class="form-group">
 				{!! Form::label('street', 'Street:') !!}
 				{!! Form::text('street', null, ['class'=>'form-control']) !!}
-			</div>
+			</div>	
 
 			<div class="form-group">
 				{!! Form::label('city', 'City:') !!}
@@ -24,9 +25,10 @@
 			</div>
 
 			<div class="form-group">
-				{!! Form::submit('Add Residence'); !!}
+				{!! Form::submit('Update Post', ['class' => 'btn btn-primary form-control']) !!}
 			</div>
 		{!! Form::close() !!}
-	@include('errors.list')
+		@include('errors.list')
 	</div>
+</div>
 @endsection

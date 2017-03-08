@@ -30,11 +30,14 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   Route::get("/landlord/my-residences", "LandlordController@my_residences")->name('landlord.my_residences');
 
   //add a residence to landlord - show form
-  Route::get("/landlord/add-residence", "LandlordController@add_residence")->name('landlord.add');
+  Route::get("/landlord/add-residence", "LandlordController@add_residence")->name('residence.add');
 
   //add a residence to landlord - post form
-  Route::POST("/landlord/store-residence", "LandlordController@store_residence")->name('landlord.store');
+  Route::POST("/landlord/store-residence", "LandlordController@store_residence")->name('residence.store');
+
+  Route::get("/residence/{id}/edit", "LandlordController@edit_residence")->name('residence.edit');
   
+  Route::PATCH("/residence/{id}/update", "LandlordController@update_residence")->name('residence.update');
 });
 
 

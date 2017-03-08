@@ -10,7 +10,7 @@
 		</div>
 		@can('edit_residence', $residence)
 		<div class="col-md-2">
-			Edit
+			<a href="{{route('residence.edit', ['id'=>$residence->id])}}">Edit</a>
 		</div>
 		@endcan
 	</div>
@@ -20,6 +20,7 @@
 			<div class="col-md-12">
 				<h3>Review by:{{$reviews->user->name}}
 				<h4>{{$reviews->title}}</h4>
+				@can('owns_post', $reviews) <a href="{{ route('posts.edit', $reviews->id) }}">Edit</a>@endcan</div>
 			</div>
 		@endforeach
 	</div>
