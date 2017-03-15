@@ -12,7 +12,7 @@ class Posts extends Model
 	/* A Post is owned by User*/
     public function user()
     {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class, 'id');
     }
 
     //Posts can also belong to a residence
@@ -24,7 +24,7 @@ class Posts extends Model
     //this model allows for many comments
     public function comments()
     {
-        return $this->hasMany(Comments::class);
+        return $this->hasMany(Comments::class, 'post_id');
     }
     
     /*** 

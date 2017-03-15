@@ -30,11 +30,22 @@ class User extends Authenticatable
     //turns dates to carbon
     protected $dates = ['created_at'];
     
-    // A user can have multiple posts
+    /**
+     * [user has many posts]
+     * @return [type] [description]
+     */
     public function posts() {
         return $this->hasMany(Posts::class);
     }
     
+    /**
+     * [user has one profile]
+     * @return [type] [description]
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 
     //Creates Many to Many Relationship between Users table (and model) and Roles Table (and model)
     public function roles()
@@ -47,12 +58,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Business::class);
     }
-
-    public function comments()
-    {
-        return $this->hasMany(Comments::class);
-    }
-    
     
 
     //Checks for a specific role
@@ -125,7 +130,7 @@ class User extends Authenticatable
     public function landlordResOwner($related){
         //this works
         return $this->business->residence()->where('id', $related->id)->first();
-        //return $this->load('business.residence')->where('id', $related->id)->get();
+        // return $this->load('business.residence')->where('id', $related->id)->get();
     }
 
 }

@@ -55,6 +55,7 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
 
   //
   Route::POST('review/{residence}', 'ResidenceController@store_residence_review')->name('residence.store_residence_review');
+  Route::POST('reply/{post}', 'LandlordController@reply_comment')->name('posts.reply');
 
 	Route::resource('posts', 'PostsController');
     

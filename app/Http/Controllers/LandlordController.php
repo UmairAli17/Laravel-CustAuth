@@ -11,12 +11,12 @@ use App\Business;
 use Auth;
 use App\User;
 use App\Residence;
-
-
+use App\Posts;
+use App\Comments;
 
 class LandlordController extends Controller
 {
-    public function __construct()
+    public function __construct() 
     {
 
     }
@@ -58,7 +58,7 @@ class LandlordController extends Controller
     public function edit_residence($id)
     {
         $residence = Residence::findorFail($id);
-        if(Gate::allows('edit_residence', $residence))
+        if(Gate::allows('landlord_owner', $residence))
         {   
             return view('residences.edit', compact('residence'));
         }
@@ -76,7 +76,7 @@ class LandlordController extends Controller
     public function update_residence(Request $request, $id)
     {
         $residence = Residence::findorFail($id);
-        if(Gate::allows('edit_residence', $residence))
+        if(Gate::allows('landlord_owner', $residence))
         {   
             $residence->update($request->all());
             return redirect()->action('ResidenceController@view', [$residence]);
@@ -86,6 +86,25 @@ class LandlordController extends Controller
             flash()->error('You are not the landlord owner');
             return back();
         }
+    }
+
+    /**
+     * [reply_comment {POST METHOD}]
+     * @param  Request $request [description]
+     * @param  [type]  $post    [description]
+     * @return [type]           [description]
+     */
+    public function reply_comment(Request $request, $post)
+    {
+        $post_id = Posts::findOrFail($post);
+        $reply = new Comments($request->all());
+        $user = Auth::user();
+        // This works
+        $reply['user_id'] = Auth::user()->id;
+        $reply['post_id'] = $post_id->id;
+        $reply->save();
+        // $replies = $user->posts()->comments()->save($reply);
+        return back();
     }
 
 

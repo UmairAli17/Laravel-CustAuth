@@ -12,7 +12,7 @@
 
 		
 		<div class="col-md-4 cards">
-			@can('add-landlord-residence')<a href="{{ route('landlord.add')}}"><span class="card-items">Add Residence</span></a>@endcan
+			@can('add-landlord-residence')<a href="{{ route('residence.add')}}"><span class="card-items">Add Residence</span></a>@endcan
 		</div>
 
 		

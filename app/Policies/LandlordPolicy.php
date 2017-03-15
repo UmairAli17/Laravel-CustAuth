@@ -21,7 +21,7 @@ class LandlordPolicy
         //
     }
 
-    public function edit_residence(User $user, Residence $residence)
+    public function landlord_owner(User $user, Residence $residence)
     {
         //if current user that is a landlord 
         if($user->landlordResOwner($residence))

@@ -60,5 +60,12 @@
         $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
 
+    <script>
+        $(".reply_btn").click(function(e) {
+            $(e.target).next(".reply_form").toggle();
+        });
+
+    </script>
+
 </body>
 </html>

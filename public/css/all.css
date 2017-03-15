@@ -20,6 +20,9 @@
 p {
   color: grey; }
 
+.reply_form {
+  display: none; }
+
 /*# sourceMappingURL=app.css.map */
 
 /*# sourceMappingURL=all.css.map */

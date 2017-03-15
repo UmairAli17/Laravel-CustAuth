@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Roles;
+use App\Profile;
 use Validator;
 use Auth;
 use Illuminate\Http\Request;
@@ -116,11 +117,10 @@ class AuthController extends Controller
         ]);
         //Find the newly created user
         $user = User::find($create->id);
+        //Create user profile on registration
+        $user->profile()->save(new Profile);
         //then attach the role id to that user
         $user->roles()->attach($data['role']);
-        //$user->roles()->attach(2);
-        //To Note:         $user->roles()->assignRole($data['role']); can be done   however the dropdown has only integers as values and the "assignRole" function only allows one to assign
-        //a role by name
         return $create;
 
     }
