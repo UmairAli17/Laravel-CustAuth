@@ -58,6 +58,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(Business::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comments::class, 'user_id');
+    }
     
 
     //Checks for a specific role

@@ -19,6 +19,8 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/test/{id}', 'ResidenceController@test');
+
 
 /**** LANDLORD SPECIFIC ROUTES***/
 Route::group(['middleware' => 'roles:landlord'], function() {
@@ -46,6 +48,8 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
 {
 
   // Residence Routes
+  Route::get('reply/{comment}/edit', 'LandlordController@edit_comment')->name('comment.edit');
+  Route::PATCH('reply/{comment}/update', 'LandlordController@update_comment')->name('comment.update');
 
   //show all residences
   Route::get('residence', 'ResidenceController@all')->name('residences.all');

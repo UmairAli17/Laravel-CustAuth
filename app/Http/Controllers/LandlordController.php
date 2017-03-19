@@ -101,10 +101,44 @@ class LandlordController extends Controller
         $user = Auth::user();
         // This works
         $reply['user_id'] = Auth::user()->id;
-        $reply['post_id'] = $post_id->id;
+        $reply['posts_id'] = $post_id->id;
         $reply->save();
         // $replies = $user->posts()->comments()->save($reply);
         return back();
+    }
+
+
+    /**
+     * [edit_comment show the edit reply to comment form]
+     * @param  [type] $comment [description]
+     * @return [type]          [description]
+     */
+    public function edit_comment($comment)
+    {
+        $c = Comments::findOrFail($comment);
+        if(Gate::allows('can_reply', $c))
+        {   
+            return view('residences.comments.edit', compact('c'));
+        }
+        else{
+            flash()->error('You are not the landlord owner');
+            return back();
+        }
+    }
+
+    public function update_comment(Request $request, $comment)
+    {
+        $c = Comments::findOrFail($comment);
+        if(Gate::allows('can_reply', $c))
+        {   
+            $c->update($request->all());
+            return back(); 
+            flash()->success('Your Comment has been updated');
+        }
+        else{
+            flash()->error('You are not the owner of this reply!!');
+            return back();
+        }
     }
 
 

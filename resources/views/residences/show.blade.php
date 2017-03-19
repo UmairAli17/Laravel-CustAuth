@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<h1>Reviews</h1>
-			@foreach($residence->posts as $reviews)
+			@forelse($residence->posts as $reviews)
 				<div class="col-md-12">
 					<h3>Review by:{{$reviews->user->name}}
 					<h4>{{$reviews->title}}</h4>
@@ -38,11 +38,18 @@
 							</div>
 						</div>
 					</div>
-						@foreach($reviews->comments as $replies)
+						@forelse($reviews->comments as $replies)
 							<p>{{$replies->comment}}</p>
-						@endforeach
+							@can('can_reply', $replies)<div class="col-sm-12"><a href="{{ route('comment.edit', $replies->id)}}">Edit Reply</a></div>@endcan
+						@empty
+							<p>No replies form Landlord as of yet</p>
+						@endforelse
+
+						
 				</div>
-			@endforeach
+			@empty
+				<p>No Reviews for this Residence as of Yet!</p>
+			@endforelse
 		</div>
 	</div>
 	<div class="col-md-8 col-md-offset-2">

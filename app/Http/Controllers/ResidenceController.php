@@ -21,9 +21,9 @@ class ResidenceController extends Controller
 
 	// view residence
     public function view($id){
-    	$residence = Residence::with('posts.user')->findOrFail($id);
+    	$residence = Residence::with('posts')->findOrFail($id);
     	$post = new Posts;
-    	return View::make('residences.show', compact('residence', 'post'));
+    	return view('residences.show', compact('residence', 'post'));
     }
 
     //store residence_review()
@@ -34,5 +34,15 @@ class ResidenceController extends Controller
         $post['residence_id'] = $residence_id->id;
         $posts = Auth::user()->posts()->save($post);
         return back();
-    }	
+    }
+
+    public function test($id)
+    {
+        // $residence = Residence::with('posts')->findOrFail($id);
+        // return $residence;
+        $residence = Residence::findOrFail($id);
+        $r = $residence->posts;
+        return $r;
+    }   
 }
+ 

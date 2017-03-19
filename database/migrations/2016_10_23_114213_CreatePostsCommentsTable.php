@@ -18,10 +18,8 @@ class CreatePostsCommentsTable extends Migration
             $table->text('comment');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('post_id')->unsigned()->index();
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-            //Allows for a comment to below to a parent comment
-            $table->integer('parent_id')->index()->nullable();
+            $table->integer('posts_id')->unsigned()->index();
+            $table->foreign('posts_id')->references('id')->on('posts')->onDelete('cascade');
             $table->timestamps();
 
         });
