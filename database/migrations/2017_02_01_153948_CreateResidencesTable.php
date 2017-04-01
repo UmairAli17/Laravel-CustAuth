@@ -18,6 +18,7 @@ class CreateResidencesTable extends Migration
             $table->string('street');
             $table->string('city');
             $table->string('postcode');
+            $table->integer('rating');
             $table->integer('business_id')->unsigned();
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
         });

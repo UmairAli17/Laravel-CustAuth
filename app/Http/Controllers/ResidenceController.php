@@ -21,9 +21,10 @@ class ResidenceController extends Controller
 
 	// view residence
     public function view($id){
-    	$residence = Residence::with('posts')->findOrFail($id);
+    	$residence = Residence::with('posts.comments.user', 'posts.user')->findOrFail($id);
+        $postcode = json_encode($residence->postcode);
     	$post = new Posts;
-    	return view('residences.show', compact('residence', 'post'));
+    	return view('residences.show', compact('residence', 'post', 'postcode'));
     }
 
     //store residence_review()
@@ -35,6 +36,23 @@ class ResidenceController extends Controller
         $posts = Auth::user()->posts()->save($post);
         return back();
     }
+
+    public function up(Request $request, $post)
+    {   
+        $id = Posts::findOrFail($post);
+        $id->increment('post_rating', 1);
+        flash()->success('Upvoted!');
+        return back();
+    }   
+
+    public function down(Request $request, $post)
+    {
+        $id = Posts::findOrFail($post);
+        $id->decrement('post_rating', 1);
+        flash()->success('Downvoted!');
+        return back();     
+    }
+
 
     public function test($id)
     {

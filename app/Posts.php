@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
 
-	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id'];
+	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id', 'rating'];
 
 	/* A Post is owned by User*/
     public function user()
@@ -25,6 +25,11 @@ class Posts extends Model
     public function comments()
     {
         return $this->hasMany(Comments::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Ratings::class);
     }
     
     /*** 

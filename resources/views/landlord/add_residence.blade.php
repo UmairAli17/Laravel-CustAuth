@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="col-md-8 col-md-offset-2"> 
-		{!! Form::open(['route' => 'residence.store']) !!}
+	<div class="col-md-6">
+	{!! Form::open(['route' => 'residence.store', 'method' => 'POST', 'files' => true]) !!}
 			<div class="form-group">
 				{!! Form::label('name', 'Residence Name:') !!}
 				{!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -20,13 +20,18 @@
 
 			<div class="form-group">
 				{!! Form::label('postcode', 'Postcode:') !!}
-				{!! Form::text('postcode', null, ['class'=>'form-control']) !!}
+				{!! Form::text('postcode', null, ['class'=>'form-control postcode']) !!}
 			</div>
+
+			{!! Form::file('image') !!}
 
 			<div class="form-group">
 				{!! Form::submit('Add Residence'); !!}
 			</div>
 		{!! Form::close() !!}
 	@include('errors.list')
+	</div>
+	<div class="col-md-6">
+		<h1>Create New <br>Residence!</h1>
 	</div>
 @endsection

@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+
 
 Route::auth();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test/{id}', 'ResidenceController@test');
 
@@ -46,6 +43,11 @@ Route::group(['middleware' => 'roles:landlord'], function() {
 
 Route::group(['middleware' => 'roles:admin|user|landlord'], function() 
 {
+
+
+  //PostsUpvote Route
+  Route::POST('post/{post}/upvote', 'ResidenceController@up')->name('posts.upvote');
+  Route::POST('post/{post}/downvote', 'ResidenceController@down')->name('posts.downvote');
 
   // Residence Routes
   Route::get('reply/{comment}/edit', 'LandlordController@edit_comment')->name('comment.edit');

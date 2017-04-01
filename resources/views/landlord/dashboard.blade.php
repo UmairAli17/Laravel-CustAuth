@@ -7,12 +7,12 @@
 		<h2>Manage Landlord Business</h2>
 
 		<div class="col-md-4 cards">
-			@can('add-landlord-residence')<a href="{{ route('landlord.my_residences')}}"><span class="card-items">See my residences</span></a>@endcan
+			@can('landlord')<a href="{{ route('landlord.my_residences')}}"><span class="card-items">See my residences</span></a>@endcan
 		</div>
 
 		
 		<div class="col-md-4 cards">
-			@can('add-landlord-residence')<a href="{{ route('residence.add')}}"><span class="card-items">Add Residence</span></a>@endcan
+			@can('landlord')<a href="{{ route('residence.add')}}"><span class="card-items">Add Residence</span></a>@endcan
 		</div>
 
 		

@@ -2,8 +2,6 @@
 <div class="col-md-2 sideBar">
 	<ul class="noBullets">
 		@include('nav.adminNav')
-        @include('nav.landNav')
-        <hr>
 		<li><a href="#">My Profile</a></li>
 		<li><a href="{{ url('user/security')}}">Account Security</a></li>
 		

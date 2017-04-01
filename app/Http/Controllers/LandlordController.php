@@ -13,6 +13,9 @@ use App\User;
 use App\Residence;
 use App\Posts;
 use App\Comments;
+use Input;
+
+
 
 class LandlordController extends Controller
 {
@@ -43,6 +46,15 @@ class LandlordController extends Controller
     public function store_residence(ResiRequest $request)
     {
         $newR = new Residence($request->all());
+        
+        if($file = $request->hasFile('image'))
+        {
+
+            $file = $request->file('image');
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path().'/uploads/', $name);
+            $newR['image'] = $name;
+        }
         $residence = Auth::user()->business->residence()->save($newR);
         //FUTURE REF: DISPLAY CREATED RESIDENCE
         flash()->success('Your Residence has been uploaded and attached to your account.');

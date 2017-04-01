@@ -1,3 +1,29 @@
+$primary-colour-dark:   #1976D2;
+$primary-colour:        #2196F3;
+$primary-colour-light:  #BBDEFB;
+$primary-colour-text:   #FFFFFF;
+$accent-colour:         #607D8B;
+$primary-text-colour:   #212121;
+$secondary-text-colour: #757575;
+$divider-colour:        #BDBDBD;
+
+.no-padding{
+	padding: 0;
+}
+
+.no-underline
+{
+	text-decoration: none;
+}
+
+.no-underline:focus{
+	text-decoration: none;
+}
+
+.no-underline:hover{
+	text-decoration: none;
+}
+
 .navbar{
 	margin-bottom: 0;
 }
@@ -7,6 +33,11 @@
 	text-align:center;
 	height:25em;
 }
+
+.divider{
+	border-top: 1px $divider-colour;
+}
+
 
 .card-items{
 	font-size: 2em;
@@ -18,14 +49,189 @@
 
 .sideBar{
     height:100%;
-    width:250px;
-	border:solid;
 }
 
 p{
 	color:grey;
 }
 
+/*HOMEPAGE CSS*/
+
+.welcome-cont{
+	padding-top: 10em;
+	padding-bottom: 10em;
+	background-image: url('../images/bg_chairs.png');
+	text-align: center;
+}
+
+.welcome-header{
+	letter-spacing: .1em;
+	font-size: 6em;
+}
+
+.welcome-header-small
+{
+	font-size:.5em;
+}
+
+.about{
+	text-align: center;
+	padding-top: 10em;
+}
+
+.about-head
+{
+	font-size: 3em;
+	color: $primary-text-colour;
+	padding-top: 1em;
+}
+
+.about-subhead{
+	font-size: 1.5em;
+	color: $secondary-text-colour;
+		padding-bottom:1em;
+
+}
+
+.about-text
+{
+	padding-bottom: 5em;
+}
+
+.welcome-stat{
+	float: left;
+	text-align: center;
+	background: $primary-colour-dark;
+	color: #fff;
+	margin: 0;
+	
+}
+
+.welcome-stat-header{
+	font-size: 10em;
+}
+
+.welcome-stat-text
+{
+	font-size: 25%;
+}
+
+.home-signup-btn{
+	width:25%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+	border: solid 1px $primary-colour-dark;
+	padding: 1em;
+	letter-spacing: .1em;
+	transition-timing-function: ease-in-out 1s;
+}
+
+.home-signup-btn:hover{
+	background: $primary-colour-dark;
+	color: #fff;
+}
+
+/* RESIDENCE VIEW PAGE CSS**/
+
+.resi-image{
+	border: solid 1px;
+}
 .reply_form{
 	display:none;
+}
+
+.resi-cards-all{
+	margin: 1em 0;
+	background: #fff;
+	padding: 1em;
+  	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  	text-align: center;
+}
+
+.resi-cards-all-img
+{
+	border: solid 1px #AAA;
+}
+
+
+
+.landlord-tag{
+	  display: table-cell;
+	background: $primary-colour-dark;
+	color: $primary-colour-text;
+	padding: .25em;
+	letter-spacing: .1em;
+
+}
+
+.review-box{
+	padding: 1em;
+}
+
+#map{
+	height: 250px;
+}
+
+#post_rating{
+	float: left;
+}
+
+.review-card{
+	background: $primary-colour-dark;
+	color: $primary-colour-text;
+	padding: 1em;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	margin: 1em 0;
+}
+
+.review-card-text{
+	color: $primary-colour-text;
+}
+
+.landlord-replies{
+	color: $primary-colour-text;
+}
+
+.reply-cont{
+	margin-left: 2em;
+}
+
+#rating{
+	width: 5em;
+}
+
+#title{
+	width: 45em;
+}
+#body
+{
+	width: 50em;
+}
+
+.add-review-btn{
+	width: 25em;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+	border: solid 1px $primary-colour-dark;
+	padding: 1em;
+	letter-spacing: .1em;
+	transition-timing-function: ease-in-out 1s;
+}
+
+
+.resi-img-cont{
+}
+
+.resi-image
+{
+
+}
+// ADD RESIDENCE CSS
+
+.postcode{
+	text-transform: uppercase;
 }
