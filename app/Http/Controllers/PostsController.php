@@ -70,10 +70,17 @@ class PostsController extends Controller
         return view('posts.user.myPosts', compact('posts'));
     }
     
-    public function approvedPosts()
+    public function approved()
     {
         //get all the current user's approved posts
         $posts = Auth::user()->posts()->status('1')->orderBy('created_at')->get();
         return view('posts.user.myApprovedPosts', compact('posts'));
+    }
+
+    public function rejected()
+    {
+        //get all the current user's approved posts
+        $posts = Auth::user()->posts()->status('3')->orderBy('created_at')->get();
+        return view('posts.user.myRejectedPosts', compact('posts'));
     }
 }

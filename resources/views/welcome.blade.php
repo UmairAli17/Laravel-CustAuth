@@ -27,4 +27,5 @@
     	</div>
 
     	<a class="no-underline" href="{{url('/register')}}"><div class="home-signup-btn">Sign Up</div></a>
+    		
 @endsection

@@ -25,7 +25,7 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   //Landlord Dashboard
   Route::get("/landlord", "LandlordController@landlord_dash")->name('landlord.dash');
 
-  //add a residence to landlord - show form
+  //show current landlord residence
   Route::get("/landlord/my-residences", "LandlordController@my_residences")->name('landlord.my_residences');
 
   //add a residence to landlord - show form
@@ -43,7 +43,6 @@ Route::group(['middleware' => 'roles:landlord'], function() {
 
 Route::group(['middleware' => 'roles:admin|user|landlord'], function() 
 {
-
 
   //PostsUpvote Route
   Route::POST('post/{post}/upvote', 'ResidenceController@up')->name('posts.upvote');
@@ -68,9 +67,9 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
   //Shows all of current user's posts
 	Route::get('/user/my_posts', 'PostsController@myPosts');
   //Shows all of current user's APPROVED Posts
-  Route::get('/user/my_approved_posts', 'PostsController@approvedPosts');
+  Route::get('/user/my_approved_posts', 'PostsController@approved')->name('posts.approved');
   //Shows all of current user's Refused Posts
-  Route::get('/user/my_refused_posts', 'PostsController@approvedPosts');
+  Route::get('/user/my_refused_posts', 'PostsController@rejected')->name('posts.rejected');
 	//For the current user's account management
 	Route::get('user/account', 'AccountManagementController@index');
 	Route::get('user/security', 'AccountManagementController@security');

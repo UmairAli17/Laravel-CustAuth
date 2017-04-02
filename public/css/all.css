@@ -164,6 +164,20 @@ p {
 .postcode {
   text-transform: uppercase; }
 
+.dash-cont {
+  margin-top: 5em; }
+
+.account-link-box {
+  margin-top: .5em;
+  padding: 1em;
+  text-align: center;
+  border: solid 1px #BDBDBD; }
+
+.dash-icon {
+  font-size: 10em;
+  color: #757575;
+  display: block; }
+
 /*# sourceMappingURL=app.css.map */
 
 /*# sourceMappingURL=all.css.map */

@@ -14,8 +14,12 @@ class ResidenceController extends Controller
 {	
 
 	//show all residences()
-	public function all(){
-		$residences = Residence::all();
+	public function all(Request $request){
+
+        $query = $request->q;
+            $residences = $query
+                ? Residence::search($query)->get()
+                : Residence::all();
 		return view('residences.all', compact('residences'));
 	}
 
