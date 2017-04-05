@@ -1,5 +1,5 @@
+<div class="col-xs-12 col-md-6 no-padding">
 <h2>Would you like to leave a review?</h2>
-<div class="panel-heading">
 {!! Form::open(['route' => ['residence.store_residence_review', $residence->id], 'method' => 'POST']) !!}			
 	<div class="form-group">
 		{!! Form::label('rating', 'Rate Residence:') !!}

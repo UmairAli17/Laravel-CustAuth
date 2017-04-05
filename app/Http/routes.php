@@ -37,11 +37,15 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   Route::get("/residence/{id}/edit", "LandlordController@edit_residence")->name('residence.edit');
   
   Route::PATCH("/residence/{id}/update", "LandlordController@update_residence")->name('residence.update');
+
+
+  Route::get("/business/{id}/edit-details", "LandlordController@edit")->name('business.edit');
+  Route::PATCH("/business/{id}/update-details", "LandlordController@update")->name('business.update');
 });
 
 
 
-Route::group(['middleware' => 'roles:admin|user|landlord'], function() 
+Route::group(['middleware' => 'roles:admin|student|landlord'], function() 
 {
 
   //PostsUpvote Route
@@ -51,6 +55,10 @@ Route::group(['middleware' => 'roles:admin|user|landlord'], function()
   // Residence Routes
   Route::get('reply/{comment}/edit', 'LandlordController@edit_comment')->name('comment.edit');
   Route::PATCH('reply/{comment}/update', 'LandlordController@update_comment')->name('comment.update');
+
+
+  Route::POST('residence/{id}/upvote', 'ResidenceController@upRes')->name('residence.upvote');
+  Route::POST('residence/{id}/downvote', 'ResidenceController@downRes')->name('residence.downvote');
 
   //show all residences
   Route::get('residence', 'ResidenceController@all')->name('residences.all');

@@ -7,6 +7,10 @@
 		<h2>Manage Landlord Business</h2>
 
 		<div class="col-md-4 cards">
+			@can('landlord')<a href="{{route('business.edit', ['id'=> Auth::user()->business->id])}}"><span class="card-items">Edit Business Details</span></a>@endcan
+		</div>
+
+		<div class="col-md-4 cards">
 			@can('landlord')<a href="{{ route('landlord.my_residences')}}"><span class="card-items">See my residences</span></a>@endcan
 		</div>
 

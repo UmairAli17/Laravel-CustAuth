@@ -1,3 +1,18 @@
+.capitalise {
+  text-transform: uppercase; }
+
+.navbar-default {
+  background: #2196F3;
+  color: #FFFFFF;
+  border: none; }
+
+/* Title */
+.navbar-default .navbar-brand {
+  color: #FFFFFF; }
+
+.navbar-default .navbar-nav > li > a {
+  color: #FFFFFF; }
+
 .no-padding {
   padding: 0; }
 
@@ -161,6 +176,21 @@ p {
   letter-spacing: .1em;
   transition-timing-function: ease-in-out 1s; }
 
+.in-ratings-cont {
+  margin-bottom: 5em; }
+
+.icon-res {
+  font-size: 7.5em; }
+
+.reply-btn {
+  position: relative;
+  bottom: 4.5em;
+  left: 28.5em;
+  background: #2196F3; }
+
+.post-up-btn {
+  float: left; }
+
 .postcode {
   text-transform: uppercase; }
 
@@ -177,6 +207,23 @@ p {
   font-size: 10em;
   color: #757575;
   display: block; }
+
+.resi-header {
+  text-align: center;
+  font-size: 5em;
+  margin-top: 2.5em; }
+
+#q {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 5em;
+  border-radius: 0;
+  padding: 1em; }
+
+.dash-header {
+  text-align: center;
+  margin-top: 1em;
+  font-size: 5em; }
 
 /*# sourceMappingURL=app.css.map */
 

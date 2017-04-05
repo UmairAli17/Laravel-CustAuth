@@ -134,7 +134,10 @@ class User extends Authenticatable
 
     public function landlordResOwner($related){
         //this works
-        return $this->business->residence()->where('id', $related->id)->first();
+        if($this->hasRole('landlord'))
+        {
+            return $this->business->residence()->where('id', $related->id)->first();
+        }
         // return $this->load('business.residence')->where('id', $related->id)->get();
     }
 

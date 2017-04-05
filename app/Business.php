@@ -11,7 +11,7 @@ class Business extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'user_id', 'name', 'description', 'logoFileName', 'logoFilePath' ];
+    protected $fillable = [ 'id', 'user_id', 'name', 'description', 'logoFileName'];
 
     protected $table = 'businesses';
 

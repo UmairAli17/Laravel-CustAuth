@@ -7,6 +7,30 @@ $primary-text-colour:   #212121;
 $secondary-text-colour: #757575;
 $divider-colour:        #BDBDBD;
 
+
+.capitalise
+{
+	text-transform: uppercase;
+}
+
+// NAVBAR CSS
+.navbar-default
+{
+	background: $primary-colour;
+	color: $primary-colour-text;
+	border: none;
+}
+
+
+/* Title */
+.navbar-default .navbar-brand {
+    color: $primary-colour-text;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: $primary-colour-text;
+}
+
 .no-padding{
 	padding: 0;
 }
@@ -194,6 +218,7 @@ p{
 	color: $primary-colour-text;
 }
 
+
 .reply-cont{
 	margin-left: 2em;
 }
@@ -230,6 +255,29 @@ p{
 {
 
 }
+
+.in-ratings-cont
+{
+	margin-bottom: 5em;
+}
+
+.icon-res
+{
+	font-size: 7.5em;
+}
+
+.reply-btn
+{
+	position: relative;
+    bottom: 4.5em;
+    left: 28.5em;
+    background: $primary-colour;
+}
+
+.post-up-btn
+{
+	float: left;
+}
 // ADD RESIDENCE CSS
 
 .postcode{
@@ -254,4 +302,28 @@ p{
 	font-size: 10em;
 	color: $secondary-text-colour;
 	display: block;
+}
+
+// ALL RESIDENCE PAGE CSS
+
+.resi-header
+{
+	text-align: center;
+    font-size: 5em;
+    margin-top: 2.5em;
+}
+#q {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 5em;
+    border-radius: 0;
+    padding: 1em;
+}
+
+// Dashboard CSS
+.dash-header
+{
+	text-align: center;
+    margin-top: 1em;
+    font-size: 5em;
 }

@@ -7,6 +7,7 @@ use App\Http\Requests;
 use View;
 use Gate;
 use App\Http\Requests\ResiRequest;
+use App\Http\Requests\BusinessRequest;
 use App\Business;
 use Auth;
 use App\User;
@@ -14,7 +15,7 @@ use App\Residence;
 use App\Posts;
 use App\Comments;
 use Input;
-
+use Carbon;
 
 
 class LandlordController extends Controller
@@ -27,6 +28,49 @@ class LandlordController extends Controller
     //Landlord Dashboard
     public function landlord_dash(){
         return view('landlord.dashboard');
+    }
+
+    public function edit(Request $request, $id)
+    {
+
+        $business = Business::findorFail($id);
+        if(Gate::allows('business_owner', $business))
+        {   
+           return view('business.edit', compact('business'));
+        }
+        else{
+            flash()->error('You do not have sufficient access!');
+            return back();
+        }
+    }
+
+    public function update(BusinessRequest $request, $id)
+    {
+
+        $business = Business::findorFail($id);
+        if(Gate::allows('business_owner', $business))
+        {   
+            if($file = $request->hasFile('logoFileName'))
+            {
+
+                $file = $request->file('logoFileName');
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().'/uploads/logos', $name);
+                
+            }
+            $business = Business::where('id', $id)->update(
+            [
+                'logoFileName' => $name,
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
+            return back();
+            flash()->success('Your Business has been Updated!');
+        }
+        else{
+            flash()->error('You cannot make changes to a business that is not yours!!');
+            return back();
+        }
     }
 
 

@@ -16,6 +16,7 @@ class ResidenceController extends Controller
 	//show all residences()
 	public function all(Request $request){
 
+        $data = [];
         $query = $request->q;
             $residences = $query
                 ? Residence::search($query)->get()
@@ -38,6 +39,22 @@ class ResidenceController extends Controller
         $post['approval'] = 2;
         $post['residence_id'] = $residence_id->id;
         $posts = Auth::user()->posts()->save($post);
+        return back();
+    }
+
+    public function upRes(Request $request, $id)
+    {
+        $residence = Residence::findOrFail($id);
+        $residence->increment('rating', 1);
+        flash()->success('Upvoted!');
+        return back();
+    }
+
+    public function downRes(Request $request, $id)
+    {
+        $residence = Residence::findOrFail($id);
+        $residence->decrement('rating', 1);
+        flash()->success('Downvoted!');
         return back();
     }
 

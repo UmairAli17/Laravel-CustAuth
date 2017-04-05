@@ -25,7 +25,8 @@
 		    	</div>
 	    	</div>
     	</div>
-
-    	<a class="no-underline" href="{{url('/register')}}"><div class="home-signup-btn">Sign Up</div></a>
+    	@if(Auth::guest())
+    		<a class="no-underline" href="{{url('/register')}}"><div class="home-signup-btn">Sign Up</div></a>
+    	@endif
     		
 @endsection
