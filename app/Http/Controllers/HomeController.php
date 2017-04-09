@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Posts;
-use App\Residences;
+use App\Residence;
 use App\User;
 class HomeController extends Controller
 {
@@ -28,7 +28,7 @@ class HomeController extends Controller
         //Displays all of the approved posts.
         $users = User::all()->count();
         $post = Posts::status('1')->orderBy('created_at')->count();
-        $residences = Residences::all()->count();
+        $residences = Residence::all()->count();
         return view('welcome', compact('users', 'post', 'residences'));
     }
 }

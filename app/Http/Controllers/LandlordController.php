@@ -56,14 +56,18 @@ class LandlordController extends Controller
                 $file = $request->file('logoFileName');
                 $name = time() . '-' . $file->getClientOriginalName();
                 $file->move(public_path().'/uploads/logos', $name);
-                
+                $business = Business::where('id', $id)->update(
+                [
+                    'logoFileName' => $name,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                ]);
             }
-            $business = Business::where('id', $id)->update(
-            [
-                'logoFileName' => $name,
-                'name' => $request->name,
-                'description' => $request->description,
-            ]);
+            else
+            {
+                $business->update($request->all());
+            }
+           
             return back();
             flash()->success('Your Business has been Updated!');
         }
@@ -90,7 +94,7 @@ class LandlordController extends Controller
     public function store_residence(ResiRequest $request)
     {
         $newR = new Residence($request->all());
-        
+        // $name = "no-image.png";
         if($file = $request->hasFile('image'))
         {
 
@@ -185,11 +189,28 @@ class LandlordController extends Controller
     public function update_comment(Request $request, $comment)
     {
         $c = Comments::findOrFail($comment);
+        $r = $c->posts->residence;
         if(Gate::allows('can_reply', $c))
         {   
             $c->update($request->all());
-            return back(); 
+            return redirect()->route('residence.view', [$r->id]); 
             flash()->success('Your Comment has been updated');
+        }
+        else{
+            flash()->error('You are not the owner of this reply!!');
+            return back();
+        }
+    }
+
+    public function delete_comment(Request $request, $comment)
+    {
+        $c = Comments::findOrFail($comment);
+        $r = $c->posts->residence;
+        if(Gate::allows('can_delete', $c))
+        {   
+            $c->delete();
+            return redirect()->route('residence.view', [$r->id]); 
+            flash()->success('Your Comment has been Deleted');
         }
         else{
             flash()->error('You are not the owner of this reply!!');

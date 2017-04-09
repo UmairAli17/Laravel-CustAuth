@@ -21,6 +21,12 @@ class Comments extends Model
     	return $this->belongsTo(Posts::class);
     }
 
+    public function scopeStatus($query, $status)
+    {
+        $query->where('approval', '=', $status);
+        return $query;
+    }
+
     public function user()
     {
     	return $this->belongsTo(User::class);

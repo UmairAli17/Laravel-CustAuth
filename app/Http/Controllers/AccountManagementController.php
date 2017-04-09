@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Profile;
 use Hash;
 use Input;
-
+use Gate;
 use App\Http\Requests\UserSecurityFormRequest;
 
 class AccountManagementController extends Controller
@@ -66,5 +67,64 @@ class AccountManagementController extends Controller
                 return back();
             }
    	}
-    	
+
+    /**
+     * [profile Get User Profile View]
+     * @return [type] [description]
+     */
+    public function profile($id)
+    {
+        $profile = User::with('profile', 'posts')->findorFail($id);
+        $total = $profile->posts()->count();
+        $approved = $profile->posts()->status('1')->count();
+        $rejected = $profile->posts()->status('3')->count();
+        return view('users.profile', compact('profile', 'total', 'approved', 'rejected'));
+    }
+
+    public function editProfile(Request $request, $id){
+
+        $profile = Profile::findorFail($id);
+        if(Gate::allows('access_profile', $profile))
+        {   
+           return view('users.edit-prof', compact('profile'));
+        }
+        else{
+            flash()->error('You do not have sufficient access!');
+            return back();
+        }
+    
+    }
+    
+
+    public function updateProfile(Request $request, $id){
+        $profile = Profile::findorFail($id);
+        // $name = "no-image.png";
+        if(Gate::allows('access_profile', $profile))
+        {   
+           if($file = $request->hasFile('image'))
+            {
+
+                $file = $request->file('image');
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().'/uploads/user', $name);
+                $profile->update(
+                [
+                    'image' => $name,
+                    'gender' => $request->gender,
+                    'occupation' => $request->occupation,
+                    'education' => $request->education,
+                    'location' => $request->location,
+                ]);
+            }
+            else
+            {
+                $profile->update($request->all());
+            }
+           return redirect()->route('user.profile', [$profile->user_id]);
+        }
+        else{
+            flash()->error('You do not have sufficient access!');
+            return back();
+        }
+    }	
 }

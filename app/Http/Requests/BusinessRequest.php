@@ -32,7 +32,6 @@ class BusinessRequest extends Request
         return [
             'name' => 'required',
             'logoFileName' => array(
-                    'required',
                     'mimes:jpeg,bmp,png',
                 ),
 

@@ -44,7 +44,7 @@ class User extends Authenticatable
      */
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class, 'user_id');
     }
 
     //Creates Many to Many Relationship between Users table (and model) and Roles Table (and model)

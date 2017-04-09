@@ -29,4 +29,14 @@ class LandlordPolicy
             return true;
         }
     }
+
+    public function can_review(User $user, Residence $residence)
+    {
+        //if current user that is a landlord - do not allow to review
+        if($user->landlordResOwner($residence))
+        {
+            return false;
+        }
+        return true;
+    }
 }

@@ -13,11 +13,6 @@ use Auth;
 class PostsController extends Controller
 {
 
-	public function __construct()
-	{  
-        //
-	}
-
     public function index()
     {
         $post = Posts::status('1')->orderBy('created_at')->get();
@@ -49,16 +44,34 @@ class PostsController extends Controller
     {
         $post = Posts::findOrFail($id);
         $user = Auth::user()->name;
+        $r = $post->residence;
         if (Gate::allows('owns_post', $post)) {
             //tells the query to add the user user's name ot the table
             $post['edited_by'] = $user;
             $post->update($request->all());
             flash()->success('Your Post has been Updated!');
-            return redirect()->action('PostsController@show', [$post]);
+            return redirect()->route('residence.view', [$r->id]); 
         }
         else{
             flash()->warning('You do not have access to editing that resource');
-            return redirect()->action('PostsController@show', [$posts]);      
+            return redirect()->route('residence.view', [$r->id]);     
+        }
+        
+    }
+
+    //Function that handles the update post data
+    public function delete(Request $request, $id)
+    {
+        $post = Posts::findOrFail($id);
+        $r = $post->residence;
+        if (Gate::allows('owns_post', $post)) {
+            $post->delete();
+            flash()->success('Your Review has been deleted!');
+            return redirect()->route('residence.view', [$r->id]); 
+        }
+        else{
+            flash()->warning('You do not have access to editing that resource');
+            return redirect()->route('residence.view', [$r->id]);     
         }
         
     }

@@ -6,6 +6,7 @@ use App\Posts;
 use App\Residence;
 use App\Comments;
 use App\Business;
+use App\Profile;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -21,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         \App\Residence::class => \App\Policies\LandlordPolicy::class,
         \App\Comments::class => \App\Policies\CommentPolicy::class,
         \App\Business::class => \App\Policies\BusinessPolicy::class,
+        \App\Profile::class => \App\Policies\ProfilePolicy::class,
     ];
 
     /**

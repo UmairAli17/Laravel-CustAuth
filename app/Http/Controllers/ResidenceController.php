@@ -16,7 +16,6 @@ class ResidenceController extends Controller
 	//show all residences()
 	public function all(Request $request){
 
-        $data = [];
         $query = $request->q;
             $residences = $query
                 ? Residence::search($query)->get()
@@ -26,20 +25,45 @@ class ResidenceController extends Controller
 
 	// view residence
     public function view($id){
-    	$residence = Residence::with('posts.comments.user', 'posts.user')->findOrFail($id);
+    	$residence = Residence::with('approved_posts.approved_comments.user', 'approved_posts.user', 'landlord_business.user')->findOrFail($id);
         $postcode = json_encode($residence->postcode);
     	$post = new Posts;
     	return view('residences.show', compact('residence', 'post', 'postcode'));
+        
     }
 
     //store residence_review()
     public function store_residence_review(PostRequest $request, $residence){
     	$residence_id = Residence::findOrFail($residence);
-    	$post = new Posts($request->all());
-        $post['approval'] = 2;
-        $post['residence_id'] = $residence_id->id;
-        $posts = Auth::user()->posts()->save($post);
-        return back();
+        if(Gate::allows('can_review', $residence_id))
+        {
+            $post = new Posts($request->all());
+            $post['approval'] = 2;
+            $post['residence_id'] = $residence_id->id;
+            $posts = Auth::user()->posts()->save($post);
+            return back();
+        }
+        else
+        {
+            flash()->error('As a Landlord, you are not allowed to review your own residence');
+            return back();
+        }
+    	
+    }
+
+    //store residence_review()
+    public function delete(Request $request, $residence){
+        $residence_id = Residence::findOrFail($residence);
+        if (Gate::allows('landlord_owner', $residence_id))
+        {
+            $residence_id->delete();
+            return redirect()->route('landlord.my_residences');
+        }
+        else
+        {
+            flash()->success('Your Review has been deleted!');
+            return back();
+        }
     }
 
     public function upRes(Request $request, $id)

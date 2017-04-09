@@ -16,7 +16,14 @@ class CommentPolicy
      * @return void
      */
 
-public function can_reply(User $user, Comments $comments)
+    public function can_reply(User $user, Comments $comments)
+    {
+        if ($user->isAdmin() || $user->owns($comments)) {
+            return true;
+        } 
+    }
+
+    public function can_delete(User $user, Comments $comments)
     {
         if ($user->isAdmin() || $user->owns($comments)) {
             return true;

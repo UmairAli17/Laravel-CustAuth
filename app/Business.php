@@ -33,7 +33,7 @@ class Business extends Model
     //this landlord business has many residences
     public function residence()
     {
-        return $this->hasMany(Residence::class);
+        return $this->hasMany(Residence::class, 'business_id');
     }
 
 }

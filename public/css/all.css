@@ -1,3 +1,11 @@
+.date-colour {
+  color: #e74430;
+  font-weight: bold;
+  letter-spacing: .1em; }
+
+.bold-emphasis {
+  font-weight: bold; }
+
 .capitalise {
   text-transform: uppercase; }
 
@@ -109,7 +117,7 @@ p {
 
 /* RESIDENCE VIEW PAGE CSS**/
 .resi-image {
-  border: solid 1px; }
+  width: 100%; }
 
 .reply_form {
   display: none; }
@@ -118,11 +126,12 @@ p {
   margin: 1em 0;
   background: #fff;
   padding: 1em;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  text-align: center; }
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .resi-cards-all-img {
-  border: solid 1px #AAA; }
+  width: 100%;
+  margin: 0;
+  padding: 0; }
 
 .landlord-tag {
   display: table-cell;
@@ -141,29 +150,25 @@ p {
   float: left; }
 
 .review-card {
-  background: #1976D2;
-  color: #FFFFFF;
+  background: #eee;
   padding: 1em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin: 1em 0; }
-
-.review-card-text {
-  color: #FFFFFF; }
-
-.landlord-replies {
-  color: #FFFFFF; }
 
 .reply-cont {
   margin-left: 2em; }
 
 #rating {
-  width: 5em; }
+  width: 10%; }
+
+.rating-select {
+  width: 10%; }
 
 #title {
-  width: 45em; }
+  width: 60%; }
 
 #body {
-  width: 50em; }
+  width: 90%; }
 
 .add-review-btn {
   width: 25em;
@@ -176,8 +181,16 @@ p {
   letter-spacing: .1em;
   transition-timing-function: ease-in-out 1s; }
 
+.img-det-row {
+  background: #f7f7f7;
+  padding: 1em; }
+
 .in-ratings-cont {
-  margin-bottom: 5em; }
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center; }
 
 .icon-res {
   font-size: 7.5em; }
@@ -188,8 +201,8 @@ p {
   left: 28.5em;
   background: #2196F3; }
 
-.post-up-btn {
-  float: left; }
+#post-up-btn {
+  width: 100%; }
 
 .postcode {
   text-transform: uppercase; }
@@ -224,6 +237,48 @@ p {
   text-align: center;
   margin-top: 1em;
   font-size: 5em; }
+
+.edit-prof-btn {
+  border: solid 1px #BDBDBD;
+  color: #fff;
+  padding: 1em;
+  margin-top: 2em;
+  text-align: center;
+  background: #2196F3; }
+
+.edit-prof-btn:hover {
+  background: #fff;
+  color: #212121; }
+
+.prof-top-bg {
+  background: #1976D2; }
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin: 2.5em 0;
+  margin: 10em auto 1em auto; }
+
+.prof-name {
+  text-align: center;
+  color: #FFFFFF;
+  letter-spacing: .1em; }
+
+.prof-info {
+  text-align: center;
+  color: #FFFFFF; }
+
+.prof-below-item {
+  margin-top: 2.5em;
+  height: auto; }
+
+.prof-icons {
+  font-size: 15em; }
+
+.prof-below-item-text {
+  text-align: center;
+  margin-top: 4.5em; }
 
 /*# sourceMappingURL=app.css.map */
 

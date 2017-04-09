@@ -16,6 +16,7 @@ class CreatePostsCommentsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('comment');
+            $table->integer('approval');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('posts_id')->unsigned()->index();

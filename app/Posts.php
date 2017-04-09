@@ -27,6 +27,13 @@ class Posts extends Model
         return $this->hasMany(Comments::class);
     }
 
+    //this model allows for many comments
+    public function approved_comments()
+    {
+        return $this->hasMany(Comments::class)->status('1')->orderBy('created_at');
+
+    }
+
     public function ratings()
     {
         return $this->hasMany(Ratings::class);

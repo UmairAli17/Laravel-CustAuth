@@ -4,14 +4,14 @@
 	<div class="row">
 			<h1 class="dash-header">Account Dashboard</h1>
 			<div class="col-xs-12 dash-cont">
-					<a class="no-underline" href="#">
+					<a class="no-underline" href="{{route('user.profile', ['id' => Auth::user()->id])}}">
 						<div class="col-xs-12 col-md-4">
 							<div class="col-xs-12 account-link-box">
 								<span class="glyphicon glyphicon-user dash-icon"></span>My Profile
 							</div>
 						</div>
 					</a>
-					<a class="no-underline" href="{{ url('user/security')}}">
+					<a class="no-underline" href="{{ route('user.security')}}">
 							<div class="col-xs-12 col-md-4">
 								<div class="col-xs-12 account-link-box">
 									<span class="glyphicon glyphicon-cog dash-icon"></span>Account Settings
