@@ -35,23 +35,19 @@ class ResidenceController extends Controller
     //store residence_review()
     public function store_residence_review(PostRequest $request, $residence){
     	$residence_id = Residence::findOrFail($residence);
-        if(Gate::allows('can_review', $residence_id))
-        {
             $post = new Posts($request->all());
             $post['approval'] = 2;
             $post['residence_id'] = $residence_id->id;
             $posts = Auth::user()->posts()->save($post);
             return back();
-        }
-        else
-        {
-            flash()->error('As a Landlord, you are not allowed to review your own residence');
-            return back();
-        }
-    	
     }
 
-    //store residence_review()
+    /**
+     * [delete residence]
+     * @param  Request $request  
+     * @param  [type]  $residence [Residence Model]
+     * @return [type]       
+     */
     public function delete(Request $request, $residence){
         $residence_id = Residence::findOrFail($residence);
         if (Gate::allows('landlord_owner', $residence_id))

@@ -26,7 +26,9 @@
 						{!! Form::open(['route' => ['posts.downvote', $reviews->id], 'method'=> 'POST']) !!}
 							<button type="submit" class="btn btn-default" name="post_rating" id="post_rating"><span class="glyphicon glyphicon-arrow-down"></span></button>
 						{!! FORM::close() !!}
-						@can('landlord_owner', $residence)<button  class="btn btn-default reply_btn" >Reply</button>@endcan
+						@can('landlord_owner', $residence)
+							<button  class="btn btn-default reply_btn" >Reply</button>
+						@endcan
 						<div class="col-xs-12 reply_form no-padding">
 							{!! Form::open(['route' => ['posts.reply', $reviews->id], 'method'=> 'POST']) !!}
 								<div class="form-group">

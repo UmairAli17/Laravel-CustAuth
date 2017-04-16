@@ -94,7 +94,6 @@ class LandlordController extends Controller
     public function store_residence(ResiRequest $request)
     {
         $newR = new Residence($request->all());
-        // $name = "no-image.png";
         if($file = $request->hasFile('image'))
         {
 
@@ -217,6 +216,16 @@ class LandlordController extends Controller
             return back();
         }
     }
+
+    public function profile($id)
+    {
+        $business = Business::with('user', 'review', 'residence')->findorFail($id);
+        $reviews = $business->review->count();
+        $properties = $business->residence->count();
+        return view('business.profile', compact('business', 'reviews', 'properties'));
+        return $business;
+    }
+
 
 
 

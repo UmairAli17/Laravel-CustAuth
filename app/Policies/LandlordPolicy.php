@@ -21,6 +21,12 @@ class LandlordPolicy
         //
     }
 
+    /**
+     * [landlord_owner Give Current User Access to Action if they Are Landlord Owner]
+     * @param  User      $user      Model
+     * @param  Residence $residence Model
+     * @return [boolean]               
+     */
     public function landlord_owner(User $user, Residence $residence)
     {
         //if current user that is a landlord 
@@ -28,15 +34,5 @@ class LandlordPolicy
         {
             return true;
         }
-    }
-
-    public function can_review(User $user, Residence $residence)
-    {
-        //if current user that is a landlord - do not allow to review
-        if($user->landlordResOwner($residence))
-        {
-            return false;
-        }
-        return true;
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 	    <div class="col-xs-12 no-padding welcome-cont">
 	    	<div class="col-xs-12 no-padding">
-	        	<h1 class="welcome-header">RentSafe - <br><span class="welcome-header-small">Safe, Informative Renting</span></h1> 
+	        	<h1 class="welcome-header">RentSafe <br><span class="welcome-header-small">Safe, Informative Renting</span></h1> 
 		    </div>
 	    </div>
 	    <div class="container about">

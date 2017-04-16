@@ -21,6 +21,7 @@ class CreateResidencesTable extends Migration
             $table->integer('rating');
             $table->integer('business_id')->unsigned();
             $table->foreign('business_id')->references('id')->on('businesses')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

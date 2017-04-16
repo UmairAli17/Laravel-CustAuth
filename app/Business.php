@@ -11,7 +11,7 @@ class Business extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'id', 'user_id', 'name', 'description', 'logoFileName'];
+    protected $fillable = [ 'id', 'user_id', 'name', 'description', 'address', 'phone', 'logoFileName'];
 
     protected $table = 'businesses';
 
@@ -27,13 +27,13 @@ class Business extends Model
     //a business can have many reviews
     public function review()
     {
-    	return $this->hasMany(Posts::class);
+    	return $this->hasMany(Posts::class, 'residence_id');
     }
 
     //this landlord business has many residences
     public function residence()
     {
-        return $this->hasMany(Residence::class, 'business_id');
+        return $this->hasMany(Residence::class);
     }
 
 }

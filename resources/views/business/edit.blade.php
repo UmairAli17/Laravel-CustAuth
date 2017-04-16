@@ -12,6 +12,16 @@
 			<div class="form-group">
 				{!! Form::label('description', 'Description:') !!}
 				{!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+			</div>
+
+			<div class="form-group">
+				{!! Form::label('phone', 'Mobile/Phone Number:') !!}
+				{!! Form::text('phone', null, ['class'=>'form-control']) !!}
+			</div>	
+
+			<div class="form-group">
+				{!! Form::label('address', 'Address:') !!}
+				{!! Form::text('address', null, ['class'=>'form-control']) !!}
 			</div>	
 
 			{!! Form::file('logoFileName') !!}

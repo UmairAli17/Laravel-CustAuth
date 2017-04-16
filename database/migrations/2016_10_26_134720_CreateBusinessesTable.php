@@ -12,12 +12,14 @@ class CreateBusinessesTable extends Migration
      */
     public function up()
     {
-            Schema::create('businesses', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->text('description');
+            $table->string('address');
+            $table->string('phone')->nullable();
             $table->string('logoFileName');
             $table->string('logoFilePath');
             $table->timestamps();

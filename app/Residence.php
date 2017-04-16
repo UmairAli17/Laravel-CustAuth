@@ -9,7 +9,6 @@ class Residence extends Model
 
 	protected $fillable = ['name', 'street', 'city', 'postcode', 'residence_id'];
     protected $table = 'residences';
-	public $timestamps = false;
 
 
 	//connect the residence to a business

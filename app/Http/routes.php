@@ -38,7 +38,7 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   
   Route::PATCH("/residence/{id}/update", "LandlordController@update_residence")->name('residence.update');
 
-
+  Route::get("/business/{id}", "LandlordController@profile")->name('business.profile');
   Route::get("/business/{id}/edit-details", "LandlordController@edit")->name('business.edit');
   Route::PATCH("/business/{id}/update-details", "LandlordController@update")->name('business.update');
 });

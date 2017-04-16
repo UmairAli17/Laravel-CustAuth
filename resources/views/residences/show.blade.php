@@ -34,7 +34,7 @@
 				{{-- @can('can_review') --}}
 				<div class="col-md-6">
 					<h2>Landlord: Business Details</h2>
-					<h3>Business Name: {{$residence->landlord_business->name}}</h3>
+					<h3>Business Name:<a href="{{route('business.profile', [$residence->landlord_business->id])}}">{{$residence->landlord_business->name}}</a></h3>
 					<h3>Owner: <a href="{{route('user.profile', [$residence->landlord_business->user->id])}}">{{$residence->landlord_business->user->name}}</a></h3>
 				</div>
 				{{-- @endcan --}}
@@ -44,9 +44,7 @@
 
 		{{-- REVIEWS & FORM ROW --}}
 		<div class="row">
-			@can('can_review')
 				@include('residences.add')
-			@endcan
 			@include('residences.reviews')
 		</div>
 		

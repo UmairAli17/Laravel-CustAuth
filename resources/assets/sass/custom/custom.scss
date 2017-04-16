@@ -7,7 +7,9 @@ $primary-text-colour:   #212121;
 $secondary-text-colour: #757575;
 $divider-colour:        #BDBDBD;
 
-
+html, body{
+	overflow-x:hidden;
+}
 .date-colour
 {
 	color: #e74430;
@@ -332,7 +334,7 @@ p{
     font-size: 5em;
     margin-top: 2.5em;
 }
-#q {
+#q{
     width: 75%;
     margin: 0 auto;
     margin-top: 5em;
@@ -410,4 +412,52 @@ p{
 .prof-small-icon
 {
 	
+}
+
+// BUSINESS PAGE CSS
+.business-img
+{
+	float: left;
+	
+	height: 400px;
+	margin: 2.5em 0;
+}
+
+.business-details
+{
+	float: left;
+	height: auto;
+	padding: 1em;
+	margin-top: 2.5em;
+    margin-left: 1em;
+    background: #f7f7f7;
+    text-align: center;
+}
+
+.business-name
+{
+	text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
+.business-description
+{
+
+}
+
+.business-contact
+{
+	color: #000;
+	text-align: left !important;
+}
+
+.edit-bsn-btn
+{
+	border: solid 1px $divider-colour;
+	color: #fff;
+	padding: 1em;
+	margin-top: 2em;
+	margin-left: 2em;
+	text-align:center;
+	background: $primary-colour;
 }

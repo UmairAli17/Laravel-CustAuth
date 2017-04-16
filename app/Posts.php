@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Posts extends Model
 {
 
+
+    //Posts can also belong to a residence
+    public function residence()
+    {
+        return $this->belongsTo(Residence::class, 'residence_id');
+    }
+
 	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id', 'rating'];
 
 	/* A Post is owned by User*/
@@ -15,11 +22,7 @@ class Posts extends Model
     	return $this->belongsTo(User::class);
     }
 
-    //Posts can also belong to a residence
-    public function residence()
-    {
-        return $this->belongsTo(Residence::class, 'residence_id');
-    }
+    
 
     //this model allows for many comments
     public function comments()

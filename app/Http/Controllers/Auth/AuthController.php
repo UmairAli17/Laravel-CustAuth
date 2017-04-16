@@ -57,7 +57,7 @@ class AuthController extends Controller
         }
     }*/
 
-
+ 
     public function authenticated($request, $user)
     {
         if($user->hasRole('landlord')) {

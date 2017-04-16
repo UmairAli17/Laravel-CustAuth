@@ -1,3 +1,6 @@
+html, body {
+  overflow-x: hidden; }
+
 .date-colour {
   color: #e74430;
   font-weight: bold;
@@ -279,5 +282,36 @@ p {
 .prof-below-item-text {
   text-align: center;
   margin-top: 4.5em; }
+
+.business-img {
+  float: left;
+  height: 400px;
+  margin: 2.5em 0; }
+
+.business-details {
+  float: left;
+  height: auto;
+  padding: 1em;
+  margin-top: 2.5em;
+  margin-left: 1em;
+  background: #f7f7f7;
+  text-align: center; }
+
+.business-name {
+  text-transform: uppercase;
+  letter-spacing: .1em; }
+
+.business-contact {
+  color: #000;
+  text-align: left !important; }
+
+.edit-bsn-btn {
+  border: solid 1px #BDBDBD;
+  color: #fff;
+  padding: 1em;
+  margin-top: 2em;
+  margin-left: 2em;
+  text-align: center;
+  background: #2196F3; }
 
 /*# sourceMappingURL=app.css.map */
