@@ -30,7 +30,7 @@
 					<span class="ion-ios-chatboxes prof-icons"></span>
 				</div>
 				<div class="col-md-8 no-padding">
-					<h3 class="prof-below-item-text">{{$total}}<br><span class="bold-emphasis">Total</span> <br>Reviews by {{$profile->name}}</h3>
+					<a href="{{route('posts.mine')}}"><h3 class="prof-below-item-text">{{$total}}<br><span class="bold-emphasis">Total</span> <br>Reviews by {{$profile->name}}</h3></a>
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 					<span class="ion-ios-checkmark prof-icons"></span>
 				</div>
 				<div class="col-md-8 no-padding">
-					<h3 class="prof-below-item-text">{{$approved}}<br><span class="bold-emphasis">Approved</span> <br>Reviews by {{$profile->name}}</h3>
+					<a href="{{route('posts.approved')}}"><h3 class="prof-below-item-text">{{$approved}}<br><span class="bold-emphasis">Approved</span> <br>Reviews by {{$profile->name}}</h3></a>
 				</div>
 			</div>
 		</div>
@@ -50,7 +50,7 @@
 					<span class="ion-ios-minus prof-icons"></span>
 				</div>
 				<div class="col-md-8 no-padding">
-					<h3 class="prof-below-item-text">{{$rejected}}<br><span class="bold-emphasis">Rejected</span> <br>Reviews by {{$profile->name}}</h3>
+					<a href="{{route('posts.rejected')}}"><h3 class="prof-below-item-text">{{$rejected}}<br><span class="bold-emphasis">Rejected</span> <br>Reviews by {{$profile->name}}</h3></a>
 				</div>
 			</div>
 		</div>

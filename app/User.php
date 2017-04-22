@@ -100,21 +100,6 @@ class User extends Authenticatable
         );
     }
 
-    /*//Checks whether the user has a role with that permission
-    public function hasPermission($permission)
-    {
-        return $this->hasRole($permission->roles);
-    }*/
-
-
-    // get the current model id, then match whatever is passed into the $related ($user) and match it to 
-    // the user_id foreign key column
-
-    // $this->id is used ot get the primary id for the current model
-
-    /* E.g. 
-        get the post id, then get the current user's id and match it to the user_id column.
-    */
     public function owns($related)
     {
         return $this->id === $related->user_id;

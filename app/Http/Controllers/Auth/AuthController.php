@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class AuthController extends Controller
 {
@@ -25,7 +26,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins, ValidatesRequests;
 
     /**
      * Where to redirect users after login / registration.
@@ -44,18 +45,6 @@ class AuthController extends Controller
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
-/**
-     * Overrides the default post register to redirect the user to the appropriate location
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     
-    public function postRegister(Request $request)
-    {
-         if($user->hasRole('landlord')) {
-            $this->postRegister($request);
-            return redirect('/landlord/create');
-        }
-    }*/
 
  
     public function authenticated($request, $user)
@@ -94,12 +83,23 @@ class AuthController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $rules = [
+            'Regex:#^([a-zA-Z]\D*\d+@[a-zA-Z]+.[a-zA-Z]+.ac.uk)|([a-zA-Z]\D*\d+@[a-zA-Z]+ac.uk+)|(D*\d+@[a-zA-Z]+.[a-zA-Z]+.ac.uk)$#'
+        ];
+
+        $v = Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'role' => 'required',
         ]);
+
+        $v->sometimes('email', $rules, function ($input) {
+            return $input->role == 3;
+        });
+        
+
+        return $v;
     }
 
     /**

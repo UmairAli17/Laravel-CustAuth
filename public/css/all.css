@@ -119,6 +119,9 @@ p {
   color: #fff; }
 
 /* RESIDENCE VIEW PAGE CSS**/
+.info-card {
+  background: #eee; }
+
 .resi-image {
   width: 100%; }
 

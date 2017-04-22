@@ -28,17 +28,17 @@
 				{{ Form::open(array('url' => '/user/security/change_password')) }}
 					<div class="form-group">
 						{!! Form::label('current_password', 'Enter Current Password:') !!}
-						{!! Form::text('current_password', null, ['class'=>'form-control']) !!}
+						{!! Form::password('current_password', null, ['class'=>'form-control']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('password', 'Enter New Password:') !!}
-						{!! Form::text('password', null, ['class'=>'form-control']) !!}
+						{!! Form::password('password', null, ['class'=>'form-control']) !!}
 					</div>
 
 					<div class="form-group">
 						{!! Form::label('password_confirmation', 'Confirm New Password:') !!}
-						{!! Form::text('password_confirmation', null, ['class'=>'form-control']) !!}
+						{!! Form::password('password_confirmation', null, ['class'=>'form-control']) !!}
 					</div>
 
 					<div class="form-group">

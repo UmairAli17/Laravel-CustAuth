@@ -137,15 +137,37 @@ class LandlordController extends Controller
         $residence = Residence::findorFail($id);
         if(Gate::allows('landlord_owner', $residence))
         {   
-            $residence->update($request->all());
+            if($file = $request->hasFile('image'))
+            {
+
+                $file = $request->file('image');
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().'/uploads/', $name);
+                $business = Business::where('id', $id)->update(
+                [
+                    'image' => $name,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                ]);
+                                    
+                return redirect()->action('ResidenceController@view', [$residence]);
+            }
+            else
+            {
+                $residence->update($request->all());
+                            return redirect()->action('ResidenceController@view', [$residence]);
+
+            }
             return redirect()->action('ResidenceController@view', [$residence]);
-            flash()->success('Your Residence has been Updated!');
+            flash()->success('Your Business has been Updated!');
         }
         else{
             flash()->error('You are not the landlord owner');
             return back();
         }
     }
+    
+    
 
     /**
      * [reply_comment {POST METHOD}]

@@ -13,7 +13,7 @@ class Residence extends Model
 
 	//connect the residence to a business
     public function landlord_business(){
-    	return $this->belongsTo(Business::class, 'id');
+    	return $this->belongsTo(Business::class, 'business_id');
     }
 
     public function posts(){
@@ -22,7 +22,7 @@ class Residence extends Model
 
     public function approved_posts()
     {
-        return $this->hasMany(Posts::class)->status('1')->orderBy('created_at');
+        return $this->hasMany(Posts::class)->status('1')->orderBy('post_rating','DESC')->orderBy('created_at');
     }
 
     public function scopeSearch($query, $searchTerm)

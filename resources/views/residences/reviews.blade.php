@@ -1,9 +1,9 @@
 			{{-- START REVIEWS --}}
-			<div class="col-xs-12 col-md-6 no-padding">
+			<div class="col-xs-12 col-md-10 no-padding">
 				<h1 >Reviews</h1>
 				@forelse($residence->approved_posts as $reviews)
-					<div class="review-card">
-						<h3>Review by:{{$reviews->user->name}}</h3>
+					<div class="panel panel-default review-card">
+						<div class="panel panel-heading"><h3>Review by:{{$reviews->user->name}}</h3></div>
 						<p class="date-colour">Created {{ $reviews->created_at}}</p>
 						@for ($i=1; $i <= 5 ; $i++)
 					      <span class="glyphicon glyphicon-star{{ ($i <= $reviews->rating) ? '' : '-empty'}}"></span>

@@ -1,5 +1,5 @@
 <?php
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -38,6 +38,8 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   
   Route::PATCH("/residence/{id}/update", "LandlordController@update_residence")->name('residence.update');
 
+    Route::PATCH('residence/{id}/delete', 'ResidenceController@delete')->name('residence.delete');
+
   Route::get("/business/{id}", "LandlordController@profile")->name('business.profile');
   Route::get("/business/{id}/edit-details", "LandlordController@edit")->name('business.edit');
   Route::PATCH("/business/{id}/update-details", "LandlordController@update")->name('business.update');
@@ -60,7 +62,7 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
 
   Route::POST('residence/{id}/upvote', 'ResidenceController@upRes')->name('residence.upvote');
   Route::POST('residence/{id}/downvote', 'ResidenceController@downRes')->name('residence.downvote');
-  Route::PATCH('residence/{id}/delete', 'ResidenceController@delete')->name('residence.delete');
+;
 
   //show all residences
   Route::get('residence', 'ResidenceController@all')->name('residences.all');
@@ -75,7 +77,7 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
 	Route::resource('posts', 'PostsController');
     
   //Shows all of current user's posts
-	Route::get('/user/my_posts', 'PostsController@myPosts');
+	Route::get('/user/my_posts', 'PostsController@myPosts')->name('posts.mine');
   //Shows all of current user's APPROVED Posts
   Route::get('/user/my_approved_posts', 'PostsController@approved')->name('posts.approved');
   //Shows all of current user's Refused Posts

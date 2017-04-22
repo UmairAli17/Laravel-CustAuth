@@ -4,7 +4,7 @@
 @section('content')
 <div class="col-md-10 col-md-offset-1">
 	<div class="panel panel-default">
-			<div class="panel-heading">My Posts</div>
+			<div class="panel-heading">My Rejected Posts</div>
 				<div class="table-responsive">
 					<table class="table table-bordered">
 						<thead>

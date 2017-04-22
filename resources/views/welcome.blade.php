@@ -1,4 +1,4 @@
-@extends('layouts.full')
+@extends('layouts.app')
 
 @section('content')
 	    <div class="col-xs-12 no-padding welcome-cont">

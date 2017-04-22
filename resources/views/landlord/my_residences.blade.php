@@ -8,6 +8,13 @@
 					<p>{{ $residence->street }}</p>
 					<p>{{ $residence->city }}</p>
 					<p>{{ $residence->postcode }}</p>
+
+					<div class="no-padding col-xs-4 no-padding">
+						<a href="{{route('residence.edit', ['id'=>$residence->id])}}">Edit Residence</a>
+						{!! Form::open(['route' => ['residence.delete', $residence->id], 'method'=> 'PATCH']) !!}
+							<button type="submit" class="btn btn-default" name="post_rating" id="post_rating"><span class="ion-trash-b"></span></button>
+						{!! FORM::close() !!}
+					</div>
 				</div>
 			@empty
 				<h2>Hey! Looks like you need to start adding residences to your Account!</h2>

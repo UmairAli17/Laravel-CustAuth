@@ -10,6 +10,16 @@
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 
+                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                                <label class="col-md-4 control-label">Account Type</label>
+                                <div class="col-md-6">
+                                    <select name="role" id="role" class="form-control">
+                                        <option value="3">Student</option>
+                                        <option value="2">Landlord</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                 <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -66,15 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('acctype') ? ' has-error' : '' }}">
-                                <label class="col-md-4 control-label">Account Type</label>
-                                <div class="col-md-6">
-                                    <select name="role" id="role" class="form-control">
-                                        <option value="3">Student</option>
-                                        <option value="2">Landlord</option>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">

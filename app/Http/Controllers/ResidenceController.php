@@ -26,9 +26,9 @@ class ResidenceController extends Controller
 	// view residence
     public function view($id){
     	$residence = Residence::with('approved_posts.approved_comments.user', 'approved_posts.user', 'landlord_business.user')->findOrFail($id);
-        $postcode = json_encode($residence->postcode);
+        // $postcode = json_encode($residence->postcode);
     	$post = new Posts;
-    	return view('residences.show', compact('residence', 'post', 'postcode'));
+    	return view('residences.show', compact('residence', 'post'));
         
     }
 
@@ -39,6 +39,7 @@ class ResidenceController extends Controller
             $post['approval'] = 2;
             $post['residence_id'] = $residence_id->id;
             $posts = Auth::user()->posts()->save($post);
+            flash()->success('Review Posted Successfully. Please Allow Time for Moderation by Admins.');
             return back();
     }
 

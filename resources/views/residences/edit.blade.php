@@ -25,7 +25,7 @@
 			</div>
 
 			<div class="form-group">
-				{!! Form::submit('Update Post', ['class' => 'btn btn-primary form-control']) !!}
+				{!! Form::submit('Update Residence', ['class' => 'btn btn-primary form-control']) !!}
 			</div>
 		{!! Form::close() !!}
 		@include('errors.list')
