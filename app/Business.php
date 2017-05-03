@@ -27,7 +27,7 @@ class Business extends Model
     //a business can have many reviews
     public function review()
     {
-    	return $this->hasMany(Posts::class, 'residence_id');
+    	return $this->hasManyThrough(Posts::class, Residence::class, 'business_id', 'residence_id');
     }
 
     //this landlord business has many residences

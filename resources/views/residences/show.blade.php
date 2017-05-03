@@ -44,7 +44,9 @@
 		{{-- REVIEWS and FORM ROW --}}
 		<div class="row">
 			<div class="col-xs-12">
-				@include('residences.add')
+				@can('student')
+					<a class="btn btn-success" href="{{route('residence.review', ['id' => $residence->id])}}">Add Review</a>
+				@endcan
 			</div>
 		</div>
 		<div class="row">
@@ -55,3 +57,8 @@
 @endsection
 
 	
+@section('scripts')
+  		$(".reply_btn").click(function(e) {
+              $(e.target).next(".reply_form").toggle();
+          });
+@endsection

@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-8 col-md-offset-2">
 	<div class="panel-heading">
-		{!! Form::model($residence, ['method' => 'PATCH', 'route' => ['residence.update', $residence->id]]) !!}
+		{!! Form::model($residence, ['method' => 'PATCH', 'files'=>true, 'route' => ['residence.update', $residence->id]]) !!}
 			<div class="form-group">
 				{!! Form::label('name', 'Name:') !!}
 				{!! Form::text('name', null, ['class'=>'form-control']) !!}
@@ -15,7 +15,7 @@
 			</div>	
 
 			<div class="form-group">
-				{!! Form::label('city', 'City:') !!}
+				{!! Form::label('city', 'Town/City:') !!}
 				{!! Form::text('city', null, ['class'=>'form-control']) !!}
 			</div>
 
@@ -23,6 +23,11 @@
 				{!! Form::label('postcode', 'Postcode:') !!}
 				{!! Form::text('postcode', null, ['class'=>'form-control']) !!}
 			</div>
+			<div class="form-group">
+			    {!! Form::label('image', 'Update Residence Image') !!}
+			    {!! Form::file('image', ['class'=>"form-control"]) !!}
+			</div>
+
 
 			<div class="form-group">
 				{!! Form::submit('Update Residence', ['class' => 'btn btn-primary form-control']) !!}

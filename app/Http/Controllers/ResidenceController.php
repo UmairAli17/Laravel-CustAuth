@@ -13,6 +13,8 @@ use App\Posts;
 class ResidenceController extends Controller
 {	
 
+
+
 	//show all residences()
 	public function all(Request $request){
 
@@ -27,20 +29,26 @@ class ResidenceController extends Controller
     public function view($id){
     	$residence = Residence::with('approved_posts.approved_comments.user', 'approved_posts.user', 'landlord_business.user')->findOrFail($id);
         // $postcode = json_encode($residence->postcode);
-    	$post = new Posts;
     	return view('residences.show', compact('residence', 'post'));
         
     }
 
+    public function add_review($id)
+    {
+        $post = new Posts;
+        $residence = Residence::findOrFail($id);
+        return view('residences.add', compact('post', 'residence'));
+
+    }
+
     //store residence_review()
     public function store_residence_review(PostRequest $request, $residence){
-    	$residence_id = Residence::findOrFail($residence);
-            $post = new Posts($request->all());
-            $post['approval'] = 2;
-            $post['residence_id'] = $residence_id->id;
-            $posts = Auth::user()->posts()->save($post);
-            flash()->success('Review Posted Successfully. Please Allow Time for Moderation by Admins.');
-            return back();
+    	$r = Residence::findOrFail($residence);
+        $post = new Posts($request->all());
+        $post['approval'] = 2;
+        $post['user_id'] = Auth::user()->id;
+        $r->posts()->save($post);
+        return redirect()->route('residence.view', ['id' => $r->id]);
     }
 
     /**
@@ -94,15 +102,5 @@ class ResidenceController extends Controller
         flash()->success('Downvoted!');
         return back();     
     }
-
-
-    public function test($id)
-    {
-        // $residence = Residence::with('posts')->findOrFail($id);
-        // return $residence;
-        $residence = Residence::findOrFail($id);
-        $r = $residence->posts;
-        return $r;
-    }   
 }
  

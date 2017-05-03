@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Auth;
-
-class ResiRequest extends Request
+class UpdateResidenceRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +22,6 @@ class ResiRequest extends Request
         }
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -32,7 +30,7 @@ class ResiRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
+           'name' => 'required',
             'street' => 'required',
             'city' => 'required',
             // regex for postcode
@@ -41,10 +39,8 @@ class ResiRequest extends Request
                 'Regex:#^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW]) ?[0-9][ABD-HJLNP-UW-Z]{2})$#i'
                 ),
             'image' => array(
-                    'required',
                     'mimes:jpeg,bmp,png',
                 ),
-
 
         ];
     }

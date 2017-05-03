@@ -7,6 +7,7 @@ use App\Http\Requests;
 use View;
 use Gate;
 use App\Http\Requests\ResiRequest;
+use App\Http\Requests\UpdateResidenceRequest;
 use App\Http\Requests\BusinessRequest;
 use App\Business;
 use Auth;
@@ -62,9 +63,11 @@ class LandlordController extends Controller
                     'name' => $request->name,
                     'description' => $request->description,
                 ]);
+                return redirect()->action('LandlordController@profile', [$business]);
             }
             else
             {
+                return redirect()->action('LandlordController@profile', [$business]);
                 $business->update($request->all());
             }
            
@@ -80,8 +83,7 @@ class LandlordController extends Controller
 
     //get all current auth'd landlord's business and all of their relations will be loaded within the template
     public function my_residences(){
-        $user = Auth::user();
-        $residences = $user->load('business.residence');
+        $residences = Auth::user()->load('business.residence');
         return View::make('landlord.my_residences', compact('residences'));
     }
 
@@ -105,7 +107,7 @@ class LandlordController extends Controller
         $residence = Auth::user()->business->residence()->save($newR);
         //FUTURE REF: DISPLAY CREATED RESIDENCE
         flash()->success('Your Residence has been uploaded and attached to your account.');
-        return back();
+        return redirect()->action('ResidenceController@view', [$newR]);
     }
 
     /**
@@ -132,41 +134,34 @@ class LandlordController extends Controller
      * @param  [type]  $id      [description]
      * @return [type]           [description]
      */
-    public function update_residence(Request $request, $id)
+    public function update_residence(UpdateResidenceRequest $request, $id)
     {
         $residence = Residence::findorFail($id);
         if(Gate::allows('landlord_owner', $residence))
-        {   
+        {
             if($file = $request->hasFile('image'))
             {
-
                 $file = $request->file('image');
                 $name = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path().'/uploads/', $name);
-                $business = Business::where('id', $id)->update(
-                [
-                    'image' => $name,
+                $file->move(public_path().'/uploads', $name);
+                $residence->update([
                     'name' => $request->name,
-                    'description' => $request->description,
+                    'street' => $request->street,
+                    'city' => $request->city,
+                    'postcode' => $request->postcode,
+                    'image' => $name,
                 ]);
-                                    
                 return redirect()->action('ResidenceController@view', [$residence]);
             }
-            else
-            {
+            else{
                 $residence->update($request->all());
-                            return redirect()->action('ResidenceController@view', [$residence]);
-
+                return redirect()->action('ResidenceController@view', [$residence]);
             }
-            return redirect()->action('ResidenceController@view', [$residence]);
-            flash()->success('Your Business has been Updated!');
         }
-        else{
-            flash()->error('You are not the landlord owner');
-            return back();
-        }
+        flash()->error('You are not the landlord owner');
+        return back();
     }
-    
+
     
 
     /**
@@ -241,11 +236,10 @@ class LandlordController extends Controller
 
     public function profile($id)
     {
-        $business = Business::with('user', 'review', 'residence')->findorFail($id);
+        $business = Business::with('review', 'residence')->findorFail($id);
         $reviews = $business->review->count();
         $properties = $business->residence->count();
         return view('business.profile', compact('business', 'reviews', 'properties'));
-        return $business;
     }
 
 

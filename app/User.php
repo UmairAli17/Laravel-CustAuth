@@ -34,8 +34,22 @@ class User extends Authenticatable
      * [user has many posts]
      * @return [type] [description]
      */
+    
     public function posts() {
         return $this->hasMany(Posts::class);
+    }
+
+    public function approvedUserPosts() {
+        return $this->hasMany(Posts::class)->status('1');
+    }
+
+
+    /**
+     * [user has many posts]
+     * @return [type] [description]
+     */
+    public function residences() {
+         return $this->hasManyThrough(Residence::class,  Business::class, 'user_id', 'business_id', 'id');
     }
     
     /**
@@ -121,8 +135,12 @@ class User extends Authenticatable
         //this works
         if($this->hasRole('landlord'))
         {
-            return $this->business->residence()->where('id', $related->id)->first();
+            return $this->residences()->where('residences.id', $related->id)->first();
         }
+
+        // return $this->residences()->where('residences.id', $related->id)->first();
+                    // return $this->residences()->where('id', $related->id)->first();
+
         // return $this->load('business.residence')->where('id', $related->id)->get();
     }
 

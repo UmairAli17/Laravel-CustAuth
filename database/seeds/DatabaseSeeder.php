@@ -11,12 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //***** The following are seeds for the tables. Comment them out once you've finished with a seed. Remove comments so you can use them when migrating the database.****//
-        
-        //$this->call(UsersTableSeeder::class);
-        //\$this->call(RolesTableSeeder::class);
-        //$this->call(AssignRolesUsers::class);
-        $this->call(AddAdminModerateMenuPermSeeder::class);
 
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsSeeder::class);
+        $this->call(RolesPermissionsSeeder::class);
     }
 }

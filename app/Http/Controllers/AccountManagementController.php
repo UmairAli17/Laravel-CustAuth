@@ -27,7 +27,6 @@ class AccountManagementController extends Controller
 
     public function security()
     {
-        // get current user details and allow them to be accessed by the view (which will be the two forms)
     	$user = Auth::user();
     	return view('auth.account.security', compact('user'));
     }
@@ -74,7 +73,7 @@ class AccountManagementController extends Controller
      */
     public function profile($id)
     {
-        $profile = User::with('profile', 'posts')->findorFail($id);
+        $profile = User::with('profile', 'posts', 'approvedUserPosts')->findorFail($id);
         $total = $profile->posts()->count();
         $approved = $profile->posts()->status('1')->count();
         $rejected = $profile->posts()->status('3')->count();

@@ -3,7 +3,8 @@
 				<h1 >Reviews</h1>
 				@forelse($residence->approved_posts as $reviews)
 					<div class="panel panel-default review-card">
-						<div class="panel panel-heading"><h3>Review by:{{$reviews->user->name}}</h3></div>
+						<div class="panel panel-heading"><h3>Review by:<a href="{{ route('user.profile', ['id'=>$reviews->user->id]) }}">{{$reviews->user->name}}</a></h3>
+						</div>
 						<p class="date-colour">Created {{ $reviews->created_at}}</p>
 						@for ($i=1; $i <= 5 ; $i++)
 					      <span class="glyphicon glyphicon-star{{ ($i <= $reviews->rating) ? '' : '-empty'}}"></span>

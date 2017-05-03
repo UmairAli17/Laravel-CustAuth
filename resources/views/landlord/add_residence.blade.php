@@ -14,7 +14,7 @@
 			</div>
 
 			<div class="form-group">
-				{!! Form::label('city', 'City:') !!}
+				{!! Form::label('city', 'Town/City:') !!}
 				{!! Form::text('city', null, ['class'=>'form-control']) !!}
 			</div>
 
@@ -23,10 +23,10 @@
 				{!! Form::text('postcode', null, ['class'=>'form-control postcode']) !!}
 			</div>
 
-			{!! Form::file('image') !!}
+			{!! Form::file('image', ['class'=>'form-control']) !!}
 
 			<div class="form-group">
-				{!! Form::submit('Add Residence'); !!}
+				{!! Form::submit('Add Residence', ['class' => 'btn btn-success']); !!}
 			</div>
 		{!! Form::close() !!}
 	@include('errors.list')

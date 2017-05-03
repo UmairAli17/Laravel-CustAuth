@@ -33,18 +33,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(GateContract $gate)
     {
-        $this->registerPolicies($gate);
-        /*      
-                The "getPermissions" is a function defined below the current function
-
-                this gets the function from the permissions model and wraps it around the $permission variable
-                it gets the link betweent he two models as says that within the gate funciton where the name of the permission in the 
-                name column of the permissions table has that permission by cross-checking it to the role model's hasRol function
-                it is done so so that it gets all the roles that have this permission
-
-                ->roles is the function from the roles model
-        */
-        
+        $this->registerPolicies($gate);      
          foreach ($this->getPermissions() as $permission) {
              $gate->define($permission->name, function($user) use ($permission){
                  return $user->hasRole($permission->roles);

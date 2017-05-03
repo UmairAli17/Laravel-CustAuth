@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Posts extends Model
 {
+	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id', 'rating'];
 
 
-    //Posts can also belong to a residence
+     //Posts can also belong to a residence
     public function residence()
     {
-        return $this->belongsTo(Residence::class, 'residence_id');
+        return $this->belongsTo(Residence::class);
     }
-
-	protected $fillable = ['title', 'body', 'user_id', 'approval', 'created_at', 'residence_id', 'rating'];
 
 	/* A Post is owned by User*/
     public function user()
@@ -33,7 +32,7 @@ class Posts extends Model
     //this model allows for many comments
     public function approved_comments()
     {
-        return $this->hasMany(Comments::class)->status('1')->orderBy('created_at');
+        return $this->comments()->status('1')->orderBy('created_at');
 
     }
 
@@ -41,11 +40,6 @@ class Posts extends Model
     {
         return $this->hasMany(Ratings::class);
     }
-    
-    /*** 
-        Allows for dynamic scoping like so:
-        $post = Posts::status('1')->orderBy('created_at')->get();
-    **/
 
 
     public function scopeStatus($query, $status)

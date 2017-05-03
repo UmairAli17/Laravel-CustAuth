@@ -1,11 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-	@include('nav.accountSide')
-	<div class="col-md-9 ">
+	<div class="col-md-8 ">
 		<h1>Welcome {{ Auth::user()->name }} </h1>
-
-		<p>This is going to be the admin dashboard. From here, you'll be able to see all the notifications that I may implement for when a new post is uploaded by a user</p>
 		<div class="panel panel-default">
 			<div class="panel-heading">Latest Users</div>
 				<div class="table-responsive">
@@ -55,5 +52,9 @@
 					</table>
 				</div>	
 		</div>
+	</div>
+	<div class="col-md-4 mod-menu-cont">
+		<h3>Moderation Menu</h3>
+		<a href="{{route('admin.moderate')}}">Moderate Posts</a>
 	</div>
 @endsection

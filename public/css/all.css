@@ -165,10 +165,7 @@ p {
   margin-left: 2em; }
 
 #rating {
-  width: 10%; }
-
-.rating-select {
-  width: 10%; }
+  width: 30%; }
 
 #title {
   width: 60%; }
@@ -286,6 +283,19 @@ p {
   text-align: center;
   margin-top: 4.5em; }
 
+.userProfReviews {
+  background: #f7f7f7;
+  padding: 1em;
+  overflow-y: scroll;
+  height: 150px; }
+
+.userProfReviewsCardHeader {
+  padding: 1em; }
+
+.center-prof-header-review {
+  text-align: center;
+  letter-spacing: .1em; }
+
 .business-img {
   float: left;
   height: 400px;
@@ -316,6 +326,11 @@ p {
   margin-left: 2em;
   text-align: center;
   background: #2196F3; }
+
+.mod-menu-cont {
+  background: #f7f7f7;
+  padding: 1em;
+  margin-top: 1em; }
 
 /*# sourceMappingURL=app.css.map */
 

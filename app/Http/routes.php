@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index');
 
 Route::auth();
 
-Route::get('/test/{id}', 'ResidenceController@test');
+Route::get('/test', 'ResidenceController@test');
 
 
 /**** LANDLORD SPECIFIC ROUTES***/
@@ -38,13 +38,20 @@ Route::group(['middleware' => 'roles:landlord'], function() {
   
   Route::PATCH("/residence/{id}/update", "LandlordController@update_residence")->name('residence.update');
 
-    Route::PATCH('residence/{id}/delete', 'ResidenceController@delete')->name('residence.delete');
+  Route::PATCH('residence/{id}/delete', 'ResidenceController@delete')->name('residence.delete');
 
-  Route::get("/business/{id}", "LandlordController@profile")->name('business.profile');
+  
   Route::get("/business/{id}/edit-details", "LandlordController@edit")->name('business.edit');
   Route::PATCH("/business/{id}/update-details", "LandlordController@update")->name('business.update');
 });
 
+// ONLY FOR ADMINS AND STUDENTS
+Route::group(['middleware' => 'roles:admin|student'], function() 
+{
+    Route::get('review/{residence}/create', 'ResidenceController@add_review')->name('residence.review');
+
+  Route::POST('review/{residence}', 'ResidenceController@store_residence_review')->name('residence.store_residence_review');
+});
 
 
 Route::group(['middleware' => 'roles:admin|student|landlord'], function() 
@@ -59,7 +66,7 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
   Route::get('reply/{comment}/edit', 'LandlordController@edit_comment')->name('comment.edit');
   Route::PATCH('reply/{comment}/update', 'LandlordController@update_comment')->name('comment.update');
   Route::PATCH('reply/{comment}/delete', 'LandlordController@delete_comment')->name('comment.delete');
-
+Route::get("/business/{id}", "LandlordController@profile")->name('business.profile');
   Route::POST('residence/{id}/upvote', 'ResidenceController@upRes')->name('residence.upvote');
   Route::POST('residence/{id}/downvote', 'ResidenceController@downRes')->name('residence.downvote');
 ;
@@ -70,8 +77,9 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
   //residence/1
   Route::get('residence/{id}', 'ResidenceController@view')->name('residence.view');
 
+
   //
-  Route::POST('review/{residence}', 'ResidenceController@store_residence_review')->name('residence.store_residence_review');
+
   Route::POST('reply/{post}', 'LandlordController@reply_comment')->name('posts.reply');
 
 	Route::resource('posts', 'PostsController');
@@ -102,7 +110,7 @@ Route::group(['middleware' => 'roles:admin|student|landlord'], function()
 
 Route::group(['middleware' => 'roles:admin'], function() {
   Route::get('/admin/', 'AdminController@index');
-  Route::get('/admin/moderate-posts', 'AdminController@showPostMod');
+  Route::get('/admin/moderate-posts', 'AdminController@showPostMod')->name('admin.moderate');
   Route::PATCH('mp/ap/{posts}', 'AdminController@postStatus');
   Route::PATCH('mp/comment/{id}', 'AdminController@commentStatus')->name('comment.moderate');
 });

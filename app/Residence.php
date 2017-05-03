@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Residence extends Model
 {
 
-	protected $fillable = ['name', 'street', 'city', 'postcode', 'residence_id'];
+	protected $fillable = ['name', 'street', 'city', 'postcode', 'residence_id', 'image'];
     protected $table = 'residences';
 
 
@@ -22,7 +22,7 @@ class Residence extends Model
 
     public function approved_posts()
     {
-        return $this->hasMany(Posts::class)->status('1')->orderBy('post_rating','DESC')->orderBy('created_at');
+        return $this->hasMany(Posts::class)->status('1')->orderBy('post_rating','ASC')->orderBy('created_at', 'ASC');
     }
 
     public function scopeSearch($query, $searchTerm)
