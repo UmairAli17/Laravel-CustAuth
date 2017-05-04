@@ -11,20 +11,38 @@ class Residence extends Model
     protected $table = 'residences';
 
 
-	//connect the residence to a business
+	/**
+     * A Residence Can Belong only to One Business
+     * @return [type] [description]
+     */
     public function landlord_business(){
     	return $this->belongsTo(Business::class, 'business_id');
     }
 
+    /**
+     * A Residnece can have Many Reviews
+     * @return [type] [description]
+     */
     public function posts(){
         return $this->hasMany(Posts::class);
     }
 
+    /**
+     * Get All Approved Posts
+     * @return [type] [description]
+     */
     public function approved_posts()
     {
         return $this->hasMany(Posts::class)->status('1')->orderBy('post_rating','ASC')->orderBy('created_at', 'ASC');
     }
 
+    /**
+     * Dynamic Scope: Search and Filter Model Accoridng ot Parameter Passed. Display a Residence Where:
+     Parameter meets any of its current table values or any of the below relations
+     * @param  [type] $query      [description]
+     * @param  [type] $searchTerm [description]
+     * @return [type]             [description]
+     */
     public function scopeSearch($query, $searchTerm)
     {
         //Search through residence table

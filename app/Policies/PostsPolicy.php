@@ -12,8 +12,8 @@ class PostsPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
-     *
+     * Allow Access if User Owns a Post
+     * 
      * @return void
      */
 

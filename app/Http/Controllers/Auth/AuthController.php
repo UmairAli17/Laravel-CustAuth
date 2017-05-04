@@ -46,7 +46,12 @@ class AuthController extends Controller
     }
 
 
- 
+    /**
+     * Once User Logged In, Check Role. Then Send to Set Route
+     * @param  [type] $request [description]
+     * @param  [type] $user    [description]
+     * @return [type]          [description]
+     */
     public function authenticated($request, $user)
     {
         if($user->hasRole('landlord')) {
@@ -58,6 +63,13 @@ class AuthController extends Controller
         return redirect()->intended($this->redirectPath());
     }
 
+    /**
+     * Register Funcitonality Override. Event Listener Fire on Registration. 
+     * If User Has Chosen landlord,Listener wilL Fire and Create a Business For 
+     * Them 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function register(Request $request)
     {
         $validator = $this->validator($request->all());

@@ -10,7 +10,7 @@ class ProfilePolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Allow Access if User Owns The Profile
      *
      * @return void
      */

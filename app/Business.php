@@ -17,20 +17,29 @@ class Business extends Model
 
 
 
-    //a business can have an owner
+    /**
+     * User Can have One Business Only One-to-One Inverse
+     * @return [type] [description]
+     */
     public function user()
     {
     	return $this->belongsTo(User::class);
     }
 
 
-    //a business can have many reviews
+    /**
+     * Business Can be Reviewed Many Through through the Posts & residenceRClass
+     * @return [type] [description]
+     */
     public function review()
     {
     	return $this->hasManyThrough(Posts::class, Residence::class, 'business_id', 'residence_id');
     }
 
-    //this landlord business has many residences
+    /**
+     * One-to-Many: Business Can have Many Residences
+     * @return [type] [description]
+     */
     public function residence()
     {
         return $this->hasMany(Residence::class);

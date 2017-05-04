@@ -39,6 +39,10 @@ class User extends Authenticatable
         return $this->hasMany(Posts::class);
     }
 
+    /**
+     * Get All of User's Approved Posts
+     * @return [type] [description]
+     */
     public function approvedUserPosts() {
         return $this->hasMany(Posts::class)->status('1');
     }
@@ -61,52 +65,54 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class, 'user_id');
     }
 
-    //Creates Many to Many Relationship between Users table (and model) and Roles Table (and model)
+    /**
+     * User Can have many Roles
+     * @return [type] [description]
+     */
     public function roles()
     {
         return $this->belongsToMany(Roles::class);
     }
     
-    //USER has only one business
+    /**
+     * User has Only One Business
+     * @return [type] [description]
+     */
     public function business()
     {
         return $this->hasOne(Business::class);
     }
 
+    /**
+     * User can have Many Comments
+     * @return [type] [description]
+     */
     public function comments()
     {
         return $this->hasMany(Comments::class, 'user_id');
     }
     
 
-    //Checks for a specific role
+    /**
+     * Check If User Has Role by Passed Parameter
+     * @param  [type]  $role Role - String
+     * @return boolean       
+     */
     public function hasRole($role)
     {
-        //if i pass a string into hasRole anywhere in the app, then get it as a single result
-        //it will check whether "admin" is part of the string result
         if(is_string($role))
         {
             return $this->roles->contains('name', $role);
         }
-        //This will check whether the role is part of an array;
 
-        //the following will check for a specific value that's equal to the parameter that I've passed into hasRole should I end up returning a collection.
-        //format is: return !! $parameter->intersect($this->relationship)->count
-        //                                                                 count makes sure it goes through the whole collection
         return !! $role->intersect($this->roles)->count();
-
-        //I could have also done this:
-        //It says run the function and get each role that equals to my parameter and return true or if it there's nothing, return false
-        /*foreach ($role as $r) {
-            if($this->hasRole($r->name))
-                {
-                    return true;
-                }
-            return false;
-        }*/
     }
 
-    //gives the user the role
+    /**
+     * Assign a Role to User
+     * @param  [type] $role [description]
+     * @return [type]       [description]
+     */
     public function assignRole($role)
     {
         return $this->roles()->save(
@@ -114,34 +120,44 @@ class User extends Authenticatable
         );
     }
 
+    /**
+     * Allows One to Check Whether User Owns a Passed Model.
+     * @param  [type] $related [description]
+     * @return [type]          [description]
+     */
     public function owns($related)
     {
         return $this->id === $related->user_id;
     }
 
-    //Check if user is an Admin.
+    /**
+     * Check if User is Admin
+     * @return boolean [description]
+     */
     public function isAdmin() 
     {
        return in_array(1, $this->roles()->pluck('roles_id')->all());
     }
     
-    //Check if user is a Landlord.
+    /**
+     * Check if User is Landlord
+     * @return boolean [description]
+     */
     public function isLandlord() 
     {
        return in_array(2, $this->roles()->pluck('roles_id')->all());
     }
 
+    /**
+     * Check if the User is a Landlord and whether they own the residence
+     * @param  [type] $related [description]
+     * @return [type]          [description]
+     */
     public function landlordResOwner($related){
-        //this works
         if($this->hasRole('landlord'))
         {
             return $this->residences()->where('residences.id', $related->id)->first();
         }
-
-        // return $this->residences()->where('residences.id', $related->id)->first();
-                    // return $this->residences()->where('id', $related->id)->first();
-
-        // return $this->load('business.residence')->where('id', $related->id)->get();
     }
 
 }

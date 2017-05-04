@@ -11,7 +11,7 @@ class BusinessPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
+     * Allow Access if Current user Owns the Business
      *
      * @return void
      */
