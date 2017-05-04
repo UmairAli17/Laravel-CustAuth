@@ -13,20 +13,11 @@ use Auth;
 class PostsController extends Controller
 {
 
-    public function index()
-    {
-        $post = Posts::status('1')->orderBy('created_at')->get();
-        return view('home', compact('post'));
-    }
-
-    //Show the Post
-    public function show($id)
-    {
-    	$post = Posts::findOrFail($id);
-    	return view('posts.show', compact('post'));
-    }
-
-    //Show Edit Post Form
+    /**
+     *  Allow Owner of Post to Edit: Display Form
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function edit($id)
     {
         $post = Posts::find($id);
@@ -39,7 +30,12 @@ class PostsController extends Controller
         }
     }
 
-    //Function that handles the update post data
+    /**
+     *  Allow owner of Post to Update: Process Update Form
+     * @param  UpdatePostRequest $request [description]
+     * @param  [type]            $id      [description]
+     * @return [type]                     [description]
+     */
     public function update(UpdatePostRequest $request, $id)
     {
         $post = Posts::findOrFail($id);
@@ -59,7 +55,12 @@ class PostsController extends Controller
         
     }
 
-    //Function that handles the update post data
+    /**
+     *  Allow Owner of Post to Delete: Delete Model
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function delete(Request $request, $id)
     {
         $post = Posts::findOrFail($id);
@@ -76,6 +77,10 @@ class PostsController extends Controller
         
     }
 
+    /**
+     *  Get All Current User's Posts
+     * @return [type] [description]
+     */
     public function myPosts()
     {
         //get all the current user's posts
@@ -83,16 +88,22 @@ class PostsController extends Controller
         return view('posts.user.myPosts', compact('posts'));
     }
     
+    /**
+     *  Get All Current User's Approved Posts
+     * @return [type] [description]
+     */
     public function approved()
     {
-        //get all the current user's approved posts
         $posts = Auth::user()->posts()->status('1')->orderBy('created_at')->get();
         return view('posts.user.myApprovedPosts', compact('posts'));
     }
 
+    /**
+     *  Get all current user's rejected posts
+     * @return [type] [description]
+     */
     public function rejected()
     {
-        //get all the current user's approved posts
         $posts = Auth::user()->posts()->status('3')->orderBy('created_at')->get();
         return view('posts.user.myRejectedPosts', compact('posts'));
     }

@@ -26,11 +26,20 @@ class LandlordController extends Controller
 
     }
 
-    //Landlord Dashboard
+    /**
+     * Show Landlord Dashboard
+     * @return [type] [description]
+     */
     public function landlord_dash(){
         return view('landlord.dashboard');
     }
 
+    /**
+     * Show Landlord Business Edit Form
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function edit(Request $request, $id)
     {
 
@@ -45,6 +54,12 @@ class LandlordController extends Controller
         }
     }
 
+    /**
+     *  Process Business Edit Form
+     * @param  BusinessRequest $request [description]
+     * @param  [type]          $id      [description]
+     * @return [type]                   [description]
+     */
     public function update(BusinessRequest $request, $id)
     {
 
@@ -81,18 +96,28 @@ class LandlordController extends Controller
     }
 
 
-    //get all current auth'd landlord's business and all of their relations will be loaded within the template
+    /**
+     *  Get all current logged in Landlord's Residences
+     * @return [type] [description]
+     */
     public function my_residences(){
         $residences = Auth::user()->load('business.residence');
         return View::make('landlord.my_residences', compact('residences'));
     }
 
-    //add residence - show form
+    /**
+     *  Display Add Residence Page (Form)
+     */
     public function add_residence()
     {	
     	return view('landlord.add_residence');
     }
 
+    /**
+     *  Process Add Residence Form
+     * @param  ResiRequest $request [description]
+     * @return [type]               [description]
+     */
     public function store_residence(ResiRequest $request)
     {
         $newR = new Residence($request->all());
@@ -202,6 +227,12 @@ class LandlordController extends Controller
         }
     }
 
+    /**
+     *  Allow landlord to update their reply
+     * @param  Request $request [description]
+     * @param  [type]  $comment [description]
+     * @return [type]           [description]
+     */
     public function update_comment(Request $request, $comment)
     {
         $c = Comments::findOrFail($comment);
@@ -218,6 +249,12 @@ class LandlordController extends Controller
         }
     }
 
+    /**
+     *  Allow Landlord to Update their Reply
+     * @param  Request $request [description]
+     * @param  [type]  $comment [description]
+     * @return [type]           [description]
+     */
     public function delete_comment(Request $request, $comment)
     {
         $c = Comments::findOrFail($comment);
@@ -234,6 +271,11 @@ class LandlordController extends Controller
         }
     }
 
+    /**
+     *  Display the Landlord's Business Profile
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function profile($id)
     {
         $business = Business::with('review', 'residence')->findorFail($id);

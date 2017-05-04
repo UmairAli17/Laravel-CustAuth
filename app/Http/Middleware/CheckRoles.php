@@ -9,7 +9,7 @@ class CheckRoles
 {
     /**
      * Handle an incoming request.
-     *
+     * If User has a Role in Parameter, Allow them through.
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
      * @return mixed

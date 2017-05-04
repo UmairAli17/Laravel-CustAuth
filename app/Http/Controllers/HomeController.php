@@ -19,13 +19,12 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show Homepage
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //Displays all of the approved posts.
         $users = User::all()->count();
         $post = Posts::status('1')->orderBy('created_at')->count();
         $residences = Residence::all()->count();

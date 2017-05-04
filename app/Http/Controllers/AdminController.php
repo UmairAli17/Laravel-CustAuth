@@ -16,7 +16,10 @@ class AdminController extends Controller
 
     }
 
-    //Show Latest Users & Posts with a limit of 10. I'll paginate later.
+    /**
+     * Show Latest Posts
+     * @return [type] [description]
+     */
     public function index()
     {	
     	$post = Posts::limit(5)->latest()->get();
@@ -24,6 +27,11 @@ class AdminController extends Controller
     	return view('admin.adminDash', compact('post', 'user'));
     }
 
+
+    /**
+     * Show the Review Moderation Page
+     * @return
+     */
     public function showPostMod()
     {
         $post = Posts::latest()->get();
@@ -31,7 +39,12 @@ class AdminController extends Controller
         return view('admin.adminPostMod', compact('post', 'comment'));
     }
 
-    //The following is to set a value for approval
+    /**
+     * Process Moderation of Review
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function postStatus(Request $request, $id)
     {
         $input = $request->input('approval');
@@ -40,7 +53,12 @@ class AdminController extends Controller
         return back();
     }
 
-     //The following is to set a value for approval
+    /**
+     * Process Moderation of Comments
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function commentStatus(Request $request, $id)
     {
         $input = $request->input('approval');

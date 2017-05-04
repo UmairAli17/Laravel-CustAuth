@@ -20,17 +20,31 @@ class AccountManagementController extends Controller
     	//Anything for whole controller or for exceptions
     }
 
+    /**
+     * Display Account Dashboard
+     * @return [type] [description]
+     */
     public function index()
     {
     	return view('auth.account.account');
     }
 
+    /**
+     * Display Forms to Change Password & Username
+     * @return [type] [description]
+     */
     public function security()
     {
     	$user = Auth::user();
     	return view('auth.account.security', compact('user'));
     }
 
+
+    /**
+     * Process Change Username Form
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
     public function updateName(Request $request)
     {
         $input = $request->input('name');
@@ -40,6 +54,11 @@ class AccountManagementController extends Controller
     	return back();
     }
 
+    /**
+     * Process Change Password Form
+     * 
+     * @return
+     */
     public function updatePassword(UserSecurityFormRequest $request)
     {
         //Grab current authentication user then get their current password. 
@@ -80,6 +99,12 @@ class AccountManagementController extends Controller
         return view('users.profile', compact('profile', 'total', 'approved', 'rejected'));
     }
 
+    /**
+     * Process Edit User Profile Form
+     * @param  Request $request Profile ID
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function editProfile(Request $request, $id){
 
         $profile = Profile::findorFail($id);

@@ -15,7 +15,11 @@ class ResidenceController extends Controller
 
 
 
-	//show all residences()
+	/**
+        Display All Residences - If there is a Request, Perform Search Scope
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
 	public function all(Request $request){
 
         $query = $request->q;
@@ -25,14 +29,21 @@ class ResidenceController extends Controller
 		return view('residences.all', compact('residences'));
 	}
 
-	// view residence
+	/**
+        Display Residence
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
     public function view($id){
     	$residence = Residence::with('approved_posts.approved_comments.user', 'approved_posts.user', 'landlord_business.user')->findOrFail($id);
-        // $postcode = json_encode($residence->postcode);
     	return view('residences.show', compact('residence', 'post'));
         
     }
 
+    /**
+     *  Display Add Review Form
+     * @param [type] $id [description]
+     */
     public function add_review($id)
     {
         $post = new Posts;
@@ -41,7 +52,12 @@ class ResidenceController extends Controller
 
     }
 
-    //store residence_review()
+    /**
+     *  Process Add Review Form
+     * @param  PostRequest $request   [description]
+     * @param  [type]      $residence [description]
+     * @return [type]                 [description]
+     */
     public function store_residence_review(PostRequest $request, $residence){
     	$r = Residence::findOrFail($residence);
         $post = new Posts($request->all());
@@ -71,6 +87,12 @@ class ResidenceController extends Controller
         }
     }
 
+    /**
+     *  Upvote Residence
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function upRes(Request $request, $id)
     {
         $residence = Residence::findOrFail($id);
@@ -79,6 +101,12 @@ class ResidenceController extends Controller
         return back();
     }
 
+    /**
+     *  Downvote Residences
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
     public function downRes(Request $request, $id)
     {
         $residence = Residence::findOrFail($id);
@@ -87,6 +115,12 @@ class ResidenceController extends Controller
         return back();
     }
 
+    /**
+     *  Upvote Review
+     * @param  Request $request [description]
+     * @param  [type]  $post    [description]
+     * @return [type]           [description]
+     */
     public function up(Request $request, $post)
     {   
         $id = Posts::findOrFail($post);
@@ -95,6 +129,12 @@ class ResidenceController extends Controller
         return back();
     }   
 
+    /**
+     *  Downvote Review
+     * @param  Request $request [description]
+     * @param  [type]  $post    [description]
+     * @return [type]           [description]
+     */
     public function down(Request $request, $post)
     {
         $id = Posts::findOrFail($post);
