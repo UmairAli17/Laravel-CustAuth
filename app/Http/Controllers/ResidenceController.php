@@ -15,8 +15,7 @@ class ResidenceController extends Controller
 
 
 
-	/**
-        Display All Residences - If there is a Request, Perform Search Scope
+     /**Display All Residences - If there is a Request, Perform Search Scope
      * @param  Request $request [description]
      * @return [type]           [description]
      */
@@ -29,8 +28,7 @@ class ResidenceController extends Controller
 		return view('residences.all', compact('residences'));
 	}
 
-	/**
-        Display Residence
+     /**Display Residence
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
@@ -42,7 +40,7 @@ class ResidenceController extends Controller
 
     /**
      *  Display Add Review Form
-     * @param [type] $id [description]
+     * 
      */
     public function add_review($id)
     {
@@ -54,9 +52,7 @@ class ResidenceController extends Controller
 
     /**
      *  Process Add Review Form
-     * @param  PostRequest $request   [description]
-     * @param  [type]      $residence [description]
-     * @return [type]                 [description]
+     * 
      */
     public function store_residence_review(PostRequest $request, $residence){
     	$r = Residence::findOrFail($residence);
@@ -69,9 +65,7 @@ class ResidenceController extends Controller
 
     /**
      * [delete residence]
-     * @param  Request $request  
-     * @param  [type]  $residence [Residence Model]
-     * @return [type]       
+     *     
      */
     public function delete(Request $request, $residence){
         $residence_id = Residence::findOrFail($residence);
@@ -89,9 +83,7 @@ class ResidenceController extends Controller
 
     /**
      *  Upvote Residence
-     * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
+     * 
      */
     public function upRes(Request $request, $id)
     {
@@ -103,9 +95,7 @@ class ResidenceController extends Controller
 
     /**
      *  Downvote Residences
-     * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
+     * 
      */
     public function downRes(Request $request, $id)
     {
@@ -117,9 +107,7 @@ class ResidenceController extends Controller
 
     /**
      *  Upvote Review
-     * @param  Request $request [description]
-     * @param  [type]  $post    [description]
-     * @return [type]           [description]
+     * 
      */
     public function up(Request $request, $post)
     {   
@@ -131,9 +119,7 @@ class ResidenceController extends Controller
 
     /**
      *  Downvote Review
-     * @param  Request $request [description]
-     * @param  [type]  $post    [description]
-     * @return [type]           [description]
+     * 
      */
     public function down(Request $request, $post)
     {
