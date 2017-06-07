@@ -21,11 +21,6 @@ use Carbon;
 
 class LandlordController extends Controller
 {
-    public function __construct() 
-    {
-
-    }
-
     /**
      * Show Landlord Dashboard
      * 
