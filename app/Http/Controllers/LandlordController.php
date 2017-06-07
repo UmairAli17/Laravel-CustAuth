@@ -28,7 +28,7 @@ class LandlordController extends Controller
 
     /**
      * Show Landlord Dashboard
-     * @return [type] [description]
+     * 
      */
     public function landlord_dash(){
         return view('landlord.dashboard');
@@ -56,9 +56,8 @@ class LandlordController extends Controller
 
     /**
      *  Process Business Edit Form
-     * @param  BusinessRequest $request [description]
-     * @param  [type]          $id      [description]
-     * @return [type]                   [description]
+     * @param  BusinessRequest $request
+     *
      */
     public function update(BusinessRequest $request, $id)
     {
@@ -115,8 +114,7 @@ class LandlordController extends Controller
 
     /**
      *  Process Add Residence Form
-     * @param  ResiRequest $request [description]
-     * @return [type]               [description]
+     * 
      */
     public function store_residence(ResiRequest $request)
     {
@@ -138,8 +136,7 @@ class LandlordController extends Controller
     /**
      * [Show Edit Form]
      * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
+     *
      */
     public function edit_residence($id)
     {
@@ -156,8 +153,7 @@ class LandlordController extends Controller
     /**
      * [Update Residence]
      * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
+     *
      */
     public function update_residence(UpdateResidenceRequest $request, $id)
     {
@@ -190,10 +186,9 @@ class LandlordController extends Controller
     
 
     /**
-     * [reply_comment {POST METHOD}]
-     * @param  Request $request [description]
-     * @param  [type]  $post    [description]
-     * @return [type]           [description]
+     * Reply to Comment by Reviewer Form
+     * Only Landlord of Property May Post
+     *
      */
     public function reply_comment(Request $request, $post)
     {
@@ -229,9 +224,8 @@ class LandlordController extends Controller
 
     /**
      *  Allow landlord to update their reply
-     * @param  Request $request [description]
-     * @param  [type]  $comment [description]
-     * @return [type]           [description]
+     * @param  Request $request
+     *
      */
     public function update_comment(Request $request, $comment)
     {
