@@ -37,8 +37,8 @@ class LandlordController extends Controller
     /**
      * Show Landlord Business Edit Form
      * @param  Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return [type]           [description]
+     * @param  Current User's Business ID
+     * @return Business Edit Form
      */
     public function edit(Request $request, $id)
     {
